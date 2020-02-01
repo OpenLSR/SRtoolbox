@@ -11,17 +11,14 @@ namespace SRtoolbox
 {
     class RTB
     {
-        // Get the DataTable.
         DataTable table = new DataTable();
         public BindingSource bs = new BindingSource();
-        // ... Use the DataTable here with SQL.
         /// <summary>
         /// This example method generates a DataTable.
         /// </summary>
         public void GenTable(string filename)
         {
             // Here we create a DataTable with four columns.
-            DataTable table = new DataTable();
             table.Columns.Add("ID", typeof(string));
             table.Columns.Add("Path", typeof(string));
 

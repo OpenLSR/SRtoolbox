@@ -43,15 +43,20 @@
             this.rtbDataGrid.AllowUserToDeleteRows = false;
             this.rtbDataGrid.AllowUserToResizeRows = false;
             this.rtbDataGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.rtbDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.rtbDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.rtbDataGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.assetId,
             this.assetPath});
+            this.rtbDataGrid.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.rtbDataGrid.Location = new System.Drawing.Point(12, 41);
             this.rtbDataGrid.MultiSelect = false;
             this.rtbDataGrid.Name = "rtbDataGrid";
             this.rtbDataGrid.ReadOnly = true;
+            this.rtbDataGrid.RowHeadersVisible = false;
+            this.rtbDataGrid.RowHeadersWidth = 21;
+            this.rtbDataGrid.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.rtbDataGrid.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.rtbDataGrid.ShowEditingIcon = false;
             this.rtbDataGrid.Size = new System.Drawing.Size(572, 371);
             this.rtbDataGrid.TabIndex = 0;
             // 
@@ -75,12 +80,15 @@
             // 
             // assetId
             // 
+            this.assetId.FillWeight = 20.19841F;
             this.assetId.HeaderText = "ID";
+            this.assetId.MinimumWidth = 40;
             this.assetId.Name = "assetId";
             this.assetId.ReadOnly = true;
             // 
             // assetPath
             // 
+            this.assetPath.FillWeight = 79.27875F;
             this.assetPath.HeaderText = "Path";
             this.assetPath.Name = "assetPath";
             this.assetPath.ReadOnly = true;

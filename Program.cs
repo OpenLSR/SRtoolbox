@@ -7,35 +7,34 @@ using System.Windows.Forms;
 
 namespace SRtoolbox
 {
-    static class Program
+    class Program
     {
+        public static string[] arguments;
+
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
         /// 
+
         [STAThread]
-        static void Main()
+        static void Main(string[] cmdargs)
         {
+            arguments = cmdargs;
+
+            EmbeddedAssembly.Load("SRtoolbox.lib.Ionic.Zip.dll", "Ionic.Zip.dll");
+            EmbeddedAssembly.Load("SRtoolbox.lib.Pfim.dll", "Pfim.dll");
+
+            AppDomain.CurrentDomain.AssemblyResolve += new ResolveEventHandler(CurrentDomain_AssemblyResolve);
+
+            Assembly CurrentDomain_AssemblyResolve(object sender, ResolveEventArgs args)
+            {
+                return EmbeddedAssembly.Get(args.Name);
+            }
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            MainForm form = new MainForm();
-
-            // Stupid .dll resource embedding hacks
-            AppDomain.CurrentDomain.AssemblyResolve += (sender, args) =>
-            {
-                string resourceName = new AssemblyName(args.Name).Name + ".dll";
-                string resource = Array.Find(form.GetType().Assembly.GetManifestResourceNames(), element => element.EndsWith(resourceName));
-
-                using (var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(resource))
-                {
-                    Byte[] assemblyData = new Byte[stream.Length];
-                    stream.Read(assemblyData, 0, assemblyData.Length);
-                    return Assembly.Load(assemblyData);
-                }
-            };
-
-            Application.Run(form);
+            Application.Run(new MainForm());
         }
     }
 }

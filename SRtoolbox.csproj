@@ -8,7 +8,7 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>SRtoolbox</RootNamespace>
     <AssemblyName>SRtoolbox</AssemblyName>
-    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
     <TargetFrameworkProfile />
@@ -34,10 +34,18 @@
     <WarningLevel>4</WarningLevel>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
+  <PropertyGroup>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Ionic.Zip, Version=1.9.1.8, Culture=neutral, PublicKeyToken=edbe51ad942a3f5c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>lib\Ionic.Zip.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Pfim, Version=0.9.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\Pfim.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System" />
@@ -53,6 +61,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EmbeddedAssembly.cs" />
+    <Compile Include="Formats\AIData\AIData.cs" />
+    <Compile Include="Formats\Cornering\Cornering.cs" />
+    <Compile Include="Formats\LSRUtil.cs" />
     <Compile Include="Formats\MDF\MDFEditForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -66,6 +78,7 @@
     <Compile Include="Formats\RTB\RTBViewForm.Designer.cs">
       <DependentUpon>RTBViewForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Formats\TRK\TRK.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -85,6 +98,7 @@
     <Compile Include="Formats\XBF\Vector2D.cs" />
     <Compile Include="Formats\XBF\Vector3D.cs" />
     <Compile Include="Formats\XBF\XBFtool.cs" />
+    <Compile Include="Structures.cs" />
     <EmbeddedResource Include="Formats\MDF\MDFEditForm.resx">
       <DependentUpon>MDFEditForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -121,12 +135,10 @@
     <EmbeddedResource Include="lib\Ionic.Zip.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Formats\AIData\" />
-    <Folder Include="Formats\Cornering\" />
-    <Folder Include="Formats\TRK\" />
     <Folder Include="Formats\XTK\" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="lib\Pfim.dll" />
     <Content Include="res\toolbox-red.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

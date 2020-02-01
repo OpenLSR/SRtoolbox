@@ -28,16 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.rfxunpackBtn = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.rfxunpackHelp = new System.Windows.Forms.Button();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.gameTab = new System.Windows.Forms.TabPage();
-            this.groupBox11 = new System.Windows.Forms.GroupBox();
+            this.corDataGroup = new System.Windows.Forms.GroupBox();
             this.corneringHelp = new System.Windows.Forms.Button();
-            this.button16 = new System.Windows.Forms.Button();
-            this.button15 = new System.Windows.Forms.Button();
+            this.cornSaveBtn = new System.Windows.Forms.Button();
+            this.cornLoadBtn = new System.Windows.Forms.Button();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.label19 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
@@ -59,18 +60,17 @@
             this.corSmallBig_Same = new System.Windows.Forms.NumericUpDown();
             this.corBigSmall_Opp = new System.Windows.Forms.NumericUpDown();
             this.corSmallBig_Opp = new System.Windows.Forms.NumericUpDown();
-            this.groupBox10 = new System.Windows.Forms.GroupBox();
+            this.aiDataGroup = new System.Windows.Forms.GroupBox();
             this.button19 = new System.Windows.Forms.Button();
-            this.button18 = new System.Windows.Forms.Button();
-            this.button17 = new System.Windows.Forms.Button();
-            this.button14 = new System.Windows.Forms.Button();
+            this.aiSaveBtn = new System.Windows.Forms.Button();
+            this.aiLoadBtn = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.aiBlocking = new System.Windows.Forms.NumericUpDown();
             this.label20 = new System.Windows.Forms.Label();
             this.aiRacingLine = new System.Windows.Forms.NumericUpDown();
             this.aiReflex = new System.Windows.Forms.NumericUpDown();
             this.label2 = new System.Windows.Forms.Label();
-            this.Overtaking = new System.Windows.Forms.NumericUpDown();
+            this.aiOvertaking = new System.Windows.Forms.NumericUpDown();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
@@ -108,7 +108,14 @@
             this.button2 = new System.Windows.Forms.Button();
             this.trackTab = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.trkxtkInfoBtn = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.groupBox12 = new System.Windows.Forms.GroupBox();
+            this.trackImage = new System.Windows.Forms.PictureBox();
+            this.trackSize = new System.Windows.Forms.Label();
+            this.trackCompat = new System.Windows.Forms.Label();
+            this.trackTheme = new System.Windows.Forms.Label();
+            this.trackMode = new System.Windows.Forms.Label();
+            this.trackLabel = new System.Windows.Forms.Label();
             this.trkxtkHelp = new System.Windows.Forms.Button();
             this.trkxtkLoad = new System.Windows.Forms.Button();
             this.aboutTab = new System.Windows.Forms.TabPage();
@@ -116,15 +123,16 @@
             this.githubLink = new System.Windows.Forms.LinkLabel();
             this.label1 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.changelogTab = new System.Windows.Forms.TabPage();
+            this.textBox2 = new System.Windows.Forms.TextBox();
             this.statusBar = new System.Windows.Forms.ProgressBar();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.statusState = new System.Windows.Forms.ToolStripStatusLabel();
-            this.changelogTab = new System.Windows.Forms.TabPage();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.intToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.groupBox1.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.gameTab.SuspendLayout();
-            this.groupBox11.SuspendLayout();
+            this.corDataGroup.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.corSmall)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.corBig)).BeginInit();
@@ -136,12 +144,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.corSmallBig_Same)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.corBigSmall_Opp)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.corSmallBig_Opp)).BeginInit();
-            this.groupBox10.SuspendLayout();
+            this.aiDataGroup.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.aiBlocking)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.aiRacingLine)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.aiReflex)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Overtaking)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.aiOvertaking)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.aiCraziness)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.aiIntelligence)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.aiSpeed)).BeginInit();
@@ -157,9 +165,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.compressionBar)).BeginInit();
             this.trackTab.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.panel1.SuspendLayout();
+            this.groupBox12.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackImage)).BeginInit();
             this.aboutTab.SuspendLayout();
-            this.statusStrip.SuspendLayout();
             this.changelogTab.SuspendLayout();
+            this.statusStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // rfxunpackBtn
@@ -210,8 +221,8 @@
             // gameTab
             // 
             this.gameTab.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.gameTab.Controls.Add(this.groupBox11);
-            this.gameTab.Controls.Add(this.groupBox10);
+            this.gameTab.Controls.Add(this.corDataGroup);
+            this.gameTab.Controls.Add(this.aiDataGroup);
             this.gameTab.Controls.Add(this.groupBox9);
             this.gameTab.Controls.Add(this.groupBox8);
             this.gameTab.Controls.Add(this.groupBox7);
@@ -227,18 +238,18 @@
             this.gameTab.TabIndex = 0;
             this.gameTab.Text = "Game Files";
             // 
-            // groupBox11
+            // corDataGroup
             // 
-            this.groupBox11.Controls.Add(this.corneringHelp);
-            this.groupBox11.Controls.Add(this.button16);
-            this.groupBox11.Controls.Add(this.button15);
-            this.groupBox11.Controls.Add(this.tableLayoutPanel2);
-            this.groupBox11.Location = new System.Drawing.Point(315, 168);
-            this.groupBox11.Name = "groupBox11";
-            this.groupBox11.Size = new System.Drawing.Size(303, 348);
-            this.groupBox11.TabIndex = 7;
-            this.groupBox11.TabStop = false;
-            this.groupBox11.Text = "Cornering data editor";
+            this.corDataGroup.Controls.Add(this.corneringHelp);
+            this.corDataGroup.Controls.Add(this.cornSaveBtn);
+            this.corDataGroup.Controls.Add(this.cornLoadBtn);
+            this.corDataGroup.Controls.Add(this.tableLayoutPanel2);
+            this.corDataGroup.Location = new System.Drawing.Point(315, 168);
+            this.corDataGroup.Name = "corDataGroup";
+            this.corDataGroup.Size = new System.Drawing.Size(303, 348);
+            this.corDataGroup.TabIndex = 7;
+            this.corDataGroup.TabStop = false;
+            this.corDataGroup.Text = "Cornering data editor";
             // 
             // corneringHelp
             // 
@@ -251,25 +262,25 @@
             this.corneringHelp.UseVisualStyleBackColor = true;
             this.corneringHelp.Click += new System.EventHandler(this.corneringHelp_Click);
             // 
-            // button16
+            // cornSaveBtn
             // 
-            this.button16.Enabled = false;
-            this.button16.Location = new System.Drawing.Point(6, 319);
-            this.button16.Name = "button16";
-            this.button16.Size = new System.Drawing.Size(262, 23);
-            this.button16.TabIndex = 4;
-            this.button16.Text = "Save DAT";
-            this.button16.UseVisualStyleBackColor = true;
+            this.cornSaveBtn.Location = new System.Drawing.Point(6, 319);
+            this.cornSaveBtn.Name = "cornSaveBtn";
+            this.cornSaveBtn.Size = new System.Drawing.Size(262, 23);
+            this.cornSaveBtn.TabIndex = 4;
+            this.cornSaveBtn.Text = "Save DAT";
+            this.cornSaveBtn.UseVisualStyleBackColor = true;
+            this.cornSaveBtn.Click += new System.EventHandler(this.cornSaveBtn_Click);
             // 
-            // button15
+            // cornLoadBtn
             // 
-            this.button15.Enabled = false;
-            this.button15.Location = new System.Drawing.Point(6, 19);
-            this.button15.Name = "button15";
-            this.button15.Size = new System.Drawing.Size(291, 23);
-            this.button15.TabIndex = 3;
-            this.button15.Text = "Load DAT";
-            this.button15.UseVisualStyleBackColor = true;
+            this.cornLoadBtn.Location = new System.Drawing.Point(6, 19);
+            this.cornLoadBtn.Name = "cornLoadBtn";
+            this.cornLoadBtn.Size = new System.Drawing.Size(291, 23);
+            this.cornLoadBtn.TabIndex = 3;
+            this.cornLoadBtn.Text = "Load DAT";
+            this.cornLoadBtn.UseVisualStyleBackColor = true;
+            this.cornLoadBtn.Click += new System.EventHandler(this.cornLoadBtn_Click);
             // 
             // tableLayoutPanel2
             // 
@@ -334,6 +345,11 @@
             // 
             this.corSmall.Cursor = System.Windows.Forms.Cursors.Default;
             this.corSmall.DecimalPlaces = 2;
+            this.corSmall.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
             this.corSmall.Location = new System.Drawing.Point(119, 3);
             this.corSmall.Maximum = new decimal(new int[] {
             9999,
@@ -348,6 +364,11 @@
             // 
             this.corBig.Cursor = System.Windows.Forms.Cursors.Default;
             this.corBig.DecimalPlaces = 2;
+            this.corBig.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
             this.corBig.Location = new System.Drawing.Point(119, 29);
             this.corBig.Maximum = new decimal(new int[] {
             9999,
@@ -434,6 +455,11 @@
             // 
             this.corSmallSmall_Same.Cursor = System.Windows.Forms.Cursors.Default;
             this.corSmallSmall_Same.DecimalPlaces = 2;
+            this.corSmallSmall_Same.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
             this.corSmallSmall_Same.Location = new System.Drawing.Point(119, 55);
             this.corSmallSmall_Same.Maximum = new decimal(new int[] {
             9999,
@@ -448,6 +474,11 @@
             // 
             this.corSmallSmall_Opp.Cursor = System.Windows.Forms.Cursors.Default;
             this.corSmallSmall_Opp.DecimalPlaces = 2;
+            this.corSmallSmall_Opp.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
             this.corSmallSmall_Opp.Location = new System.Drawing.Point(119, 81);
             this.corSmallSmall_Opp.Maximum = new decimal(new int[] {
             9999,
@@ -462,6 +493,11 @@
             // 
             this.corBigBig_Same.Cursor = System.Windows.Forms.Cursors.Default;
             this.corBigBig_Same.DecimalPlaces = 2;
+            this.corBigBig_Same.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
             this.corBigBig_Same.Location = new System.Drawing.Point(119, 107);
             this.corBigBig_Same.Maximum = new decimal(new int[] {
             9999,
@@ -476,6 +512,11 @@
             // 
             this.corBigBig_Opp.Cursor = System.Windows.Forms.Cursors.Default;
             this.corBigBig_Opp.DecimalPlaces = 2;
+            this.corBigBig_Opp.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
             this.corBigBig_Opp.Location = new System.Drawing.Point(119, 133);
             this.corBigBig_Opp.Maximum = new decimal(new int[] {
             9999,
@@ -490,6 +531,11 @@
             // 
             this.corBigSmall_Same.Cursor = System.Windows.Forms.Cursors.Default;
             this.corBigSmall_Same.DecimalPlaces = 2;
+            this.corBigSmall_Same.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
             this.corBigSmall_Same.Location = new System.Drawing.Point(119, 159);
             this.corBigSmall_Same.Maximum = new decimal(new int[] {
             9999,
@@ -504,6 +550,11 @@
             // 
             this.corSmallBig_Same.Cursor = System.Windows.Forms.Cursors.Default;
             this.corSmallBig_Same.DecimalPlaces = 2;
+            this.corSmallBig_Same.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
             this.corSmallBig_Same.Location = new System.Drawing.Point(119, 185);
             this.corSmallBig_Same.Maximum = new decimal(new int[] {
             9999,
@@ -518,6 +569,11 @@
             // 
             this.corBigSmall_Opp.Cursor = System.Windows.Forms.Cursors.Default;
             this.corBigSmall_Opp.DecimalPlaces = 2;
+            this.corBigSmall_Opp.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
             this.corBigSmall_Opp.Location = new System.Drawing.Point(119, 211);
             this.corBigSmall_Opp.Maximum = new decimal(new int[] {
             9999,
@@ -532,6 +588,11 @@
             // 
             this.corSmallBig_Opp.Cursor = System.Windows.Forms.Cursors.Default;
             this.corSmallBig_Opp.DecimalPlaces = 2;
+            this.corSmallBig_Opp.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
             this.corSmallBig_Opp.Location = new System.Drawing.Point(119, 237);
             this.corSmallBig_Opp.Maximum = new decimal(new int[] {
             9999,
@@ -542,19 +603,18 @@
             this.corSmallBig_Opp.Size = new System.Drawing.Size(169, 20);
             this.corSmallBig_Opp.TabIndex = 22;
             // 
-            // groupBox10
+            // aiDataGroup
             // 
-            this.groupBox10.Controls.Add(this.button19);
-            this.groupBox10.Controls.Add(this.button18);
-            this.groupBox10.Controls.Add(this.button17);
-            this.groupBox10.Controls.Add(this.button14);
-            this.groupBox10.Controls.Add(this.tableLayoutPanel1);
-            this.groupBox10.Location = new System.Drawing.Point(6, 168);
-            this.groupBox10.Name = "groupBox10";
-            this.groupBox10.Size = new System.Drawing.Size(303, 348);
-            this.groupBox10.TabIndex = 6;
-            this.groupBox10.TabStop = false;
-            this.groupBox10.Text = "Car AI data editor";
+            this.aiDataGroup.Controls.Add(this.button19);
+            this.aiDataGroup.Controls.Add(this.aiSaveBtn);
+            this.aiDataGroup.Controls.Add(this.aiLoadBtn);
+            this.aiDataGroup.Controls.Add(this.tableLayoutPanel1);
+            this.aiDataGroup.Location = new System.Drawing.Point(6, 168);
+            this.aiDataGroup.Name = "aiDataGroup";
+            this.aiDataGroup.Size = new System.Drawing.Size(303, 348);
+            this.aiDataGroup.TabIndex = 6;
+            this.aiDataGroup.TabStop = false;
+            this.aiDataGroup.Text = "Car AI data editor";
             // 
             // button19
             // 
@@ -567,35 +627,25 @@
             this.button19.UseVisualStyleBackColor = true;
             this.button19.Click += new System.EventHandler(this.button19_Click);
             // 
-            // button18
+            // aiSaveBtn
             // 
-            this.button18.Enabled = false;
-            this.button18.Location = new System.Drawing.Point(6, 48);
-            this.button18.Name = "button18";
-            this.button18.Size = new System.Drawing.Size(291, 23);
-            this.button18.TabIndex = 4;
-            this.button18.Text = "Load TXT";
-            this.button18.UseVisualStyleBackColor = true;
+            this.aiSaveBtn.Location = new System.Drawing.Point(6, 319);
+            this.aiSaveBtn.Name = "aiSaveBtn";
+            this.aiSaveBtn.Size = new System.Drawing.Size(262, 23);
+            this.aiSaveBtn.TabIndex = 3;
+            this.aiSaveBtn.Text = "Save BIN";
+            this.aiSaveBtn.UseVisualStyleBackColor = true;
+            this.aiSaveBtn.Click += new System.EventHandler(this.aiSaveBtn_Click);
             // 
-            // button17
+            // aiLoadBtn
             // 
-            this.button17.Enabled = false;
-            this.button17.Location = new System.Drawing.Point(6, 319);
-            this.button17.Name = "button17";
-            this.button17.Size = new System.Drawing.Size(262, 23);
-            this.button17.TabIndex = 3;
-            this.button17.Text = "Save BIN";
-            this.button17.UseVisualStyleBackColor = true;
-            // 
-            // button14
-            // 
-            this.button14.Enabled = false;
-            this.button14.Location = new System.Drawing.Point(6, 19);
-            this.button14.Name = "button14";
-            this.button14.Size = new System.Drawing.Size(291, 23);
-            this.button14.TabIndex = 2;
-            this.button14.Text = "Load BIN";
-            this.button14.UseVisualStyleBackColor = true;
+            this.aiLoadBtn.Location = new System.Drawing.Point(6, 19);
+            this.aiLoadBtn.Name = "aiLoadBtn";
+            this.aiLoadBtn.Size = new System.Drawing.Size(291, 23);
+            this.aiLoadBtn.TabIndex = 2;
+            this.aiLoadBtn.Text = "Load BIN";
+            this.aiLoadBtn.UseVisualStyleBackColor = true;
+            this.aiLoadBtn.Click += new System.EventHandler(this.aiLoadBtn_Click);
             // 
             // tableLayoutPanel1
             // 
@@ -607,7 +657,7 @@
             this.tableLayoutPanel1.Controls.Add(this.aiRacingLine, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.aiReflex, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.label2, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.Overtaking, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.aiOvertaking, 1, 2);
             this.tableLayoutPanel1.Controls.Add(this.label3, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.label4, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.label9, 0, 8);
@@ -620,7 +670,7 @@
             this.tableLayoutPanel1.Controls.Add(this.aiBraking, 1, 5);
             this.tableLayoutPanel1.Controls.Add(this.label5, 0, 4);
             this.tableLayoutPanel1.Controls.Add(this.aiCutsCorners, 1, 4);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(6, 77);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(6, 51);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 9;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
@@ -640,7 +690,7 @@
             this.aiBlocking.Cursor = System.Windows.Forms.Cursors.Default;
             this.aiBlocking.Location = new System.Drawing.Point(119, 81);
             this.aiBlocking.Maximum = new decimal(new int[] {
-            32767,
+            255,
             0,
             0,
             0});
@@ -692,18 +742,18 @@
             this.label2.Text = "Reflex";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // Overtaking
+            // aiOvertaking
             // 
-            this.Overtaking.Cursor = System.Windows.Forms.Cursors.Default;
-            this.Overtaking.Location = new System.Drawing.Point(119, 55);
-            this.Overtaking.Maximum = new decimal(new int[] {
+            this.aiOvertaking.Cursor = System.Windows.Forms.Cursors.Default;
+            this.aiOvertaking.Location = new System.Drawing.Point(119, 55);
+            this.aiOvertaking.Maximum = new decimal(new int[] {
             32767,
             0,
             0,
             0});
-            this.Overtaking.Name = "Overtaking";
-            this.Overtaking.Size = new System.Drawing.Size(169, 20);
-            this.Overtaking.TabIndex = 3;
+            this.aiOvertaking.Name = "aiOvertaking";
+            this.aiOvertaking.Size = new System.Drawing.Size(169, 20);
+            this.aiOvertaking.TabIndex = 3;
             // 
             // label3
             // 
@@ -737,7 +787,7 @@
             this.aiCraziness.Cursor = System.Windows.Forms.Cursors.Default;
             this.aiCraziness.Location = new System.Drawing.Point(119, 211);
             this.aiCraziness.Maximum = new decimal(new int[] {
-            32767,
+            255,
             0,
             0,
             0});
@@ -750,7 +800,7 @@
             this.aiIntelligence.Cursor = System.Windows.Forms.Cursors.Default;
             this.aiIntelligence.Location = new System.Drawing.Point(119, 185);
             this.aiIntelligence.Maximum = new decimal(new int[] {
-            32767,
+            255,
             0,
             0,
             0});
@@ -825,7 +875,7 @@
             this.aiCutsCorners.Cursor = System.Windows.Forms.Cursors.Default;
             this.aiCutsCorners.Location = new System.Drawing.Point(119, 107);
             this.aiCutsCorners.Maximum = new decimal(new int[] {
-            32767,
+            255,
             0,
             0,
             0});
@@ -968,12 +1018,14 @@
             // 
             this.groupBox5.Controls.Add(this.button5);
             this.groupBox5.Controls.Add(this.mdfeditBtn);
+            this.groupBox5.ForeColor = System.Drawing.Color.Red;
             this.groupBox5.Location = new System.Drawing.Point(418, 6);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(200, 48);
             this.groupBox5.TabIndex = 3;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "MDF editor";
+            this.intToolTip.SetToolTip(this.groupBox5, "Not yet implemented!");
             // 
             // button5
             // 
@@ -1035,12 +1087,14 @@
             this.groupBox3.Controls.Add(this.button1);
             this.groupBox3.Controls.Add(this.compressionBar);
             this.groupBox3.Controls.Add(this.button2);
+            this.groupBox3.ForeColor = System.Drawing.Color.Red;
             this.groupBox3.Location = new System.Drawing.Point(6, 60);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(200, 102);
             this.groupBox3.TabIndex = 2;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "RFH/RFD packer";
+            this.intToolTip.SetToolTip(this.groupBox3, "Not yet implemented!");
             // 
             // compressionLevel
             // 
@@ -1089,6 +1143,8 @@
             // 
             this.trackTab.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.trackTab.Controls.Add(this.groupBox2);
+            this.trackTab.Controls.Add(this.trkxtkHelp);
+            this.trackTab.Controls.Add(this.trkxtkLoad);
             this.trackTab.Location = new System.Drawing.Point(4, 22);
             this.trackTab.Name = "trackTab";
             this.trackTab.Padding = new System.Windows.Forms.Padding(3);
@@ -1098,31 +1154,95 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.trkxtkInfoBtn);
-            this.groupBox2.Controls.Add(this.trkxtkHelp);
-            this.groupBox2.Controls.Add(this.trkxtkLoad);
-            this.groupBox2.Location = new System.Drawing.Point(6, 6);
+            this.groupBox2.Controls.Add(this.panel1);
+            this.groupBox2.Location = new System.Drawing.Point(200, 6);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(200, 74);
+            this.groupBox2.Size = new System.Drawing.Size(418, 510);
             this.groupBox2.TabIndex = 2;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "TRK/XTK manager";
+            this.groupBox2.Text = "Track Info";
             // 
-            // trkxtkInfoBtn
+            // panel1
             // 
-            this.trkxtkInfoBtn.Enabled = false;
-            this.trkxtkInfoBtn.Location = new System.Drawing.Point(6, 45);
-            this.trkxtkInfoBtn.Name = "trkxtkInfoBtn";
-            this.trkxtkInfoBtn.Size = new System.Drawing.Size(159, 23);
-            this.trkxtkInfoBtn.TabIndex = 2;
-            this.trkxtkInfoBtn.Text = "Track Info";
-            this.trkxtkInfoBtn.UseVisualStyleBackColor = true;
+            this.panel1.Controls.Add(this.groupBox12);
+            this.panel1.Controls.Add(this.trackSize);
+            this.panel1.Controls.Add(this.trackCompat);
+            this.panel1.Controls.Add(this.trackTheme);
+            this.panel1.Controls.Add(this.trackMode);
+            this.panel1.Controls.Add(this.trackLabel);
+            this.panel1.Location = new System.Drawing.Point(6, 19);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(406, 485);
+            this.panel1.TabIndex = 4;
+            // 
+            // groupBox12
+            // 
+            this.groupBox12.Controls.Add(this.trackImage);
+            this.groupBox12.Location = new System.Drawing.Point(3, 137);
+            this.groupBox12.Name = "groupBox12";
+            this.groupBox12.Size = new System.Drawing.Size(332, 345);
+            this.groupBox12.TabIndex = 9;
+            this.groupBox12.TabStop = false;
+            this.groupBox12.Text = "Track Thumbnail";
+            // 
+            // trackImage
+            // 
+            this.trackImage.Location = new System.Drawing.Point(6, 19);
+            this.trackImage.Name = "trackImage";
+            this.trackImage.Size = new System.Drawing.Size(320, 320);
+            this.trackImage.TabIndex = 4;
+            this.trackImage.TabStop = false;
+            // 
+            // trackSize
+            // 
+            this.trackSize.AutoSize = true;
+            this.trackSize.Location = new System.Drawing.Point(3, 35);
+            this.trackSize.Name = "trackSize";
+            this.trackSize.Size = new System.Drawing.Size(33, 13);
+            this.trackSize.TabIndex = 8;
+            this.trackSize.Text = "Size: ";
+            // 
+            // trackCompat
+            // 
+            this.trackCompat.AutoSize = true;
+            this.trackCompat.Location = new System.Drawing.Point(3, 71);
+            this.trackCompat.Name = "trackCompat";
+            this.trackCompat.Size = new System.Drawing.Size(71, 13);
+            this.trackCompat.TabIndex = 7;
+            this.trackCompat.Text = "Compatibility: ";
+            // 
+            // trackTheme
+            // 
+            this.trackTheme.AutoSize = true;
+            this.trackTheme.Location = new System.Drawing.Point(3, 53);
+            this.trackTheme.Name = "trackTheme";
+            this.trackTheme.Size = new System.Drawing.Size(46, 13);
+            this.trackTheme.TabIndex = 6;
+            this.trackTheme.Text = "Theme: ";
+            // 
+            // trackMode
+            // 
+            this.trackMode.AutoSize = true;
+            this.trackMode.Location = new System.Drawing.Point(3, 17);
+            this.trackMode.Name = "trackMode";
+            this.trackMode.Size = new System.Drawing.Size(40, 13);
+            this.trackMode.TabIndex = 5;
+            this.trackMode.Text = "Mode: ";
+            // 
+            // trackLabel
+            // 
+            this.trackLabel.AutoSize = true;
+            this.trackLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.trackLabel.Location = new System.Drawing.Point(3, 0);
+            this.trackLabel.Name = "trackLabel";
+            this.trackLabel.Size = new System.Drawing.Size(44, 13);
+            this.trackLabel.TabIndex = 3;
+            this.trackLabel.Text = "Track:";
             // 
             // trkxtkHelp
             // 
-            this.trkxtkHelp.Enabled = false;
             this.trkxtkHelp.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.trkxtkHelp.Location = new System.Drawing.Point(171, 45);
+            this.trkxtkHelp.Location = new System.Drawing.Point(171, 6);
             this.trkxtkHelp.Name = "trkxtkHelp";
             this.trkxtkHelp.Size = new System.Drawing.Size(23, 23);
             this.trkxtkHelp.TabIndex = 1;
@@ -1132,14 +1252,13 @@
             // 
             // trkxtkLoad
             // 
-            this.trkxtkLoad.Enabled = false;
-            this.trkxtkLoad.Location = new System.Drawing.Point(6, 19);
+            this.trkxtkLoad.Location = new System.Drawing.Point(6, 6);
             this.trkxtkLoad.Name = "trkxtkLoad";
             this.trkxtkLoad.Size = new System.Drawing.Size(159, 23);
             this.trkxtkLoad.TabIndex = 0;
             this.trkxtkLoad.Text = "Load Track";
             this.trkxtkLoad.UseVisualStyleBackColor = true;
-            this.trkxtkLoad.Click += new System.EventHandler(this.TRK_to_XTK_Click);
+            this.trkxtkLoad.Click += new System.EventHandler(this.trkxtkLoad_Click);
             // 
             // aboutTab
             // 
@@ -1186,6 +1305,7 @@
             this.label1.TabIndex = 2;
             this.label1.Text = "Stunt Rally Toolbox";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.intToolTip.SetToolTip(this.label1, "You found me!");
             this.label1.DoubleClick += new System.EventHandler(this.label1_DoubleClick);
             // 
             // textBox1
@@ -1200,6 +1320,27 @@
             this.textBox1.Size = new System.Drawing.Size(618, 408);
             this.textBox1.TabIndex = 1;
             this.textBox1.Text = resources.GetString("textBox1.Text");
+            // 
+            // changelogTab
+            // 
+            this.changelogTab.Controls.Add(this.textBox2);
+            this.changelogTab.Location = new System.Drawing.Point(4, 22);
+            this.changelogTab.Name = "changelogTab";
+            this.changelogTab.Size = new System.Drawing.Size(624, 522);
+            this.changelogTab.TabIndex = 3;
+            this.changelogTab.Text = "Changelog";
+            this.changelogTab.UseVisualStyleBackColor = true;
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(3, 3);
+            this.textBox2.Multiline = true;
+            this.textBox2.Name = "textBox2";
+            this.textBox2.ReadOnly = true;
+            this.textBox2.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBox2.Size = new System.Drawing.Size(618, 516);
+            this.textBox2.TabIndex = 0;
+            this.textBox2.Text = resources.GetString("textBox2.Text");
             // 
             // statusBar
             // 
@@ -1226,27 +1367,6 @@
             this.statusState.Size = new System.Drawing.Size(70, 17);
             this.statusState.Text = "Initializing...";
             // 
-            // changelogTab
-            // 
-            this.changelogTab.Controls.Add(this.textBox2);
-            this.changelogTab.Location = new System.Drawing.Point(4, 22);
-            this.changelogTab.Name = "changelogTab";
-            this.changelogTab.Size = new System.Drawing.Size(624, 522);
-            this.changelogTab.TabIndex = 3;
-            this.changelogTab.Text = "Changelog";
-            this.changelogTab.UseVisualStyleBackColor = true;
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(3, 3);
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.ReadOnly = true;
-            this.textBox2.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox2.Size = new System.Drawing.Size(618, 516);
-            this.textBox2.TabIndex = 0;
-            this.textBox2.Text = "== 0.1.0\r\n- Initial release.";
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1265,7 +1385,7 @@
             this.groupBox1.ResumeLayout(false);
             this.tabControl.ResumeLayout(false);
             this.gameTab.ResumeLayout(false);
-            this.groupBox11.ResumeLayout(false);
+            this.corDataGroup.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.corSmall)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.corBig)).EndInit();
@@ -1277,12 +1397,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.corSmallBig_Same)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.corBigSmall_Opp)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.corSmallBig_Opp)).EndInit();
-            this.groupBox10.ResumeLayout(false);
+            this.aiDataGroup.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.aiBlocking)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.aiRacingLine)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.aiReflex)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Overtaking)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.aiOvertaking)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.aiCraziness)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.aiIntelligence)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.aiSpeed)).EndInit();
@@ -1299,12 +1419,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.compressionBar)).EndInit();
             this.trackTab.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            this.groupBox12.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.trackImage)).EndInit();
             this.aboutTab.ResumeLayout(false);
             this.aboutTab.PerformLayout();
-            this.statusStrip.ResumeLayout(false);
-            this.statusStrip.PerformLayout();
             this.changelogTab.ResumeLayout(false);
             this.changelogTab.PerformLayout();
+            this.statusStrip.ResumeLayout(false);
+            this.statusStrip.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1321,7 +1445,6 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button trkxtkHelp;
         private System.Windows.Forms.Button trkxtkLoad;
-        private System.Windows.Forms.Button trkxtkInfoBtn;
         private System.Windows.Forms.TabPage aboutTab;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Label compressionLevel;
@@ -1351,8 +1474,8 @@
         private System.Windows.Forms.GroupBox groupBox8;
         private System.Windows.Forms.Button button10;
         private System.Windows.Forms.Button button11;
-        private System.Windows.Forms.GroupBox groupBox11;
-        private System.Windows.Forms.GroupBox groupBox10;
+        private System.Windows.Forms.GroupBox corDataGroup;
+        private System.Windows.Forms.GroupBox aiDataGroup;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.NumericUpDown aiReflex;
         private System.Windows.Forms.Label label2;
@@ -1368,7 +1491,7 @@
         private System.Windows.Forms.NumericUpDown aiCutsCorners;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.NumericUpDown aiRacingLine;
-        private System.Windows.Forms.NumericUpDown Overtaking;
+        private System.Windows.Forms.NumericUpDown aiOvertaking;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label7;
@@ -1391,11 +1514,9 @@
         private System.Windows.Forms.NumericUpDown corSmallBig_Same;
         private System.Windows.Forms.NumericUpDown corBigSmall_Opp;
         private System.Windows.Forms.NumericUpDown corSmallBig_Opp;
-        private System.Windows.Forms.Button button16;
-        private System.Windows.Forms.Button button15;
-        private System.Windows.Forms.Button button18;
-        private System.Windows.Forms.Button button17;
-        private System.Windows.Forms.Button button14;
+        private System.Windows.Forms.Button cornSaveBtn;
+        private System.Windows.Forms.Button cornLoadBtn;
+        private System.Windows.Forms.Button aiLoadBtn;
         private System.Windows.Forms.NumericUpDown aiBlocking;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Button corneringHelp;
@@ -1404,6 +1525,16 @@
         private System.Windows.Forms.ToolStripStatusLabel statusState;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.TabPage changelogTab;
+        private System.Windows.Forms.Label trackLabel;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.PictureBox trackImage;
+        private System.Windows.Forms.Label trackMode;
+        private System.Windows.Forms.Label trackSize;
+        private System.Windows.Forms.Label trackCompat;
+        private System.Windows.Forms.Label trackTheme;
+        private System.Windows.Forms.GroupBox groupBox12;
+        private System.Windows.Forms.Button aiSaveBtn;
+        private System.Windows.Forms.ToolTip intToolTip;
     }
 }
 

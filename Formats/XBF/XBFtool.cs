@@ -5,6 +5,13 @@ using System.Linq;
 using System.Text;
 using SRtoolbox;
 
+/*
+ *
+ * Disclaimer:
+ * This code was decompiled using dnSpy. Understand at your own risk.
+ *
+ */
+
 namespace SRtoolbox
 {
     class XBFtool
@@ -12,7 +19,7 @@ namespace SRtoolbox
         // Token: 0x06000004 RID: 4 RVA: 0x00002118 File Offset: 0x00000318
         public void Setup(string args)
         {
-            if (args == "")
+            if (args == string.Empty)
             {
                 throw new ArgumentException("No file handed over!");
             }
@@ -328,7 +335,7 @@ namespace SRtoolbox
             {
                 streamWriter.WriteLine(string.Format("vt {0}", arg3).Replace(',', '.'));
             }
-            string text = "";
+            string text = string.Empty;
             streamWriter.WriteLine();
             streamWriter.WriteLine("g " + mesh.Name);
             int count = mesh.Vectors.Count;

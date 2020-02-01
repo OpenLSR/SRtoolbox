@@ -7,21 +7,9 @@ using Ionic.Zlib;
 
 namespace SRtoolbox
 {
-    internal class RFile
-    {
-        
-        public int uncompressedSize;
-        public int pathLength;
-        public int compressionType;
-        public int compressedSize;
-        public int offset;
-        public string filepath;
-        public byte[] data;
-    }
-
     internal class RFH
     {
-        private List<RFile> RFH_fileList = new List<RFile>();
+        private List<RFxFile> RFH_fileList = new List<RFxFile>();
 
         public void load(string fileRFH, string fileRFD)
         {
@@ -31,19 +19,8 @@ namespace SRtoolbox
             BinaryReader brData = new BinaryReader(fsData);
             do
             {
-                int pathLen = brHeader.ReadInt16() - 1;
-                int ucmpSize = brHeader.ReadInt32();
-
-                /*
-                byte[] temp = new byte[4];
-                byte[] tmp2 = brHeader.ReadBytes(2);
-                temp[2] = tmp2[0]; temp[3] = tmp2[1];
-                int timestamp = BitConverter.ToInt32(temp, 0);
-                */
-
-                // The timestamp is here, but it's stupid, so I'm ignoring it.
-                brHeader.BaseStream.Seek(2L, SeekOrigin.Current); 
-                
+                int pathLen = brHeader.ReadInt32() - 1;
+                DateTime timestamp = DateTimeOffset.FromUnixTimeSeconds(brHeader.ReadUInt32()).DateTime;          
                 int cmpType = brHeader.ReadInt32();
                 int cmpSize = brHeader.ReadInt32();
                 int offset = brHeader.ReadInt32();
@@ -51,16 +28,16 @@ namespace SRtoolbox
                 brHeader.BaseStream.Seek(1L, SeekOrigin.Current);
                 brData.BaseStream.Seek((long)offset, SeekOrigin.Begin);
                 byte[] data = brData.ReadBytes(cmpSize);
-                this.RFH_fileList.Add(new RFile
+                this.RFH_fileList.Add(new RFxFile
                 {
                     filepath = Encoding.UTF8.GetString(relPath),
                     pathLength = pathLen,
+                    timestamp = timestamp,
                     compressionType = cmpType,
                     compressedSize = cmpSize,
-                    uncompressedSize = ucmpSize,
                     offset = offset,
                     data = data
-                });
+                }); ;
             }
             while (brHeader.BaseStream.Position < brHeader.BaseStream.Length);
             brData.Close();
@@ -74,7 +51,7 @@ namespace SRtoolbox
             bool success = false;
             if (RFH_fileList.Count() > 0)
             {
-                foreach (RFile file in this.RFH_fileList)
+                foreach (RFxFile file in this.RFH_fileList)
                 {
                     extractFile(file, directory, true);
                 }
@@ -83,13 +60,13 @@ namespace SRtoolbox
             return success;
         }
 
-        public bool extractFile(RFile file, string directory, bool preserveStructure)
+        public bool extractFile(RFxFile file, string directory, bool preserveStructure)
         {
             bool success = false;
             if (file != null)
             {
-                Directory.CreateDirectory(directory + (preserveStructure ? ("\\" + Path.GetDirectoryName(file.filepath) + "\\") : ""));
-                FileStream fileStream = new FileStream(directory + "\\" + (preserveStructure ? ("\\" + Path.GetDirectoryName(file.filepath) + "\\") : "") + Path.GetFileName(file.filepath), FileMode.Create);
+                Directory.CreateDirectory(directory + (preserveStructure ? ("\\" + Path.GetDirectoryName(file.filepath) + "\\") : string.Empty));
+                FileStream fileStream = new FileStream(directory + "\\" + (preserveStructure ? ("\\" + Path.GetDirectoryName(file.filepath) + "\\") : string.Empty) + Path.GetFileName(file.filepath), FileMode.Create);
                 BinaryWriter binaryWriter = new BinaryWriter(fileStream);
                 byte[] buffer = file.data;
                 if (file.data.Count() > 4)
@@ -104,7 +81,7 @@ namespace SRtoolbox
                 binaryWriter.Write(buffer);
                 binaryWriter.Close();
                 fileStream.Close();
-                //File.SetLastWriteTimeUtc(directory + "\\" + file.filepath, DateTimeOffset.FromUnixTimeSeconds(file.timestamp).UtcDateTime);
+                File.SetLastWriteTime(directory + "\\" + file.filepath, file.timestamp);
                 success = true;
             }
             return success;
