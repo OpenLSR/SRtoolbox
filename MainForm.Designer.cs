@@ -40,18 +40,18 @@
             this.cornSaveBtn = new System.Windows.Forms.Button();
             this.cornLoadBtn = new System.Windows.Forms.Button();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.label19 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
+            this.corSmallBig_OppLabel = new System.Windows.Forms.Label();
+            this.corSmallLabel = new System.Windows.Forms.Label();
             this.corSmall = new System.Windows.Forms.NumericUpDown();
             this.corBig = new System.Windows.Forms.NumericUpDown();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
-            this.label18 = new System.Windows.Forms.Label();
+            this.corBigLabel = new System.Windows.Forms.Label();
+            this.corSmallSmall_SameLabel = new System.Windows.Forms.Label();
+            this.corSmallSmall_OppLabel = new System.Windows.Forms.Label();
+            this.corBigBig_SameLabel = new System.Windows.Forms.Label();
+            this.corBigBig_OppLabel = new System.Windows.Forms.Label();
+            this.corBigSmall_SameLabel = new System.Windows.Forms.Label();
+            this.corSmallBig_SameLabel = new System.Windows.Forms.Label();
+            this.corBigSmall_OppLabel = new System.Windows.Forms.Label();
             this.corSmallSmall_Same = new System.Windows.Forms.NumericUpDown();
             this.corSmallSmall_Opp = new System.Windows.Forms.NumericUpDown();
             this.corBigBig_Same = new System.Windows.Forms.NumericUpDown();
@@ -66,22 +66,22 @@
             this.aiLoadBtn = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.aiBlocking = new System.Windows.Forms.NumericUpDown();
-            this.label20 = new System.Windows.Forms.Label();
+            this.aiBlockingLabel = new System.Windows.Forms.Label();
             this.aiRacingLine = new System.Windows.Forms.NumericUpDown();
             this.aiReflex = new System.Windows.Forms.NumericUpDown();
-            this.label2 = new System.Windows.Forms.Label();
+            this.aiReflexLabel = new System.Windows.Forms.Label();
             this.aiOvertaking = new System.Windows.Forms.NumericUpDown();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
+            this.aiRacingLineLabel = new System.Windows.Forms.Label();
+            this.aiOvertakingLabel = new System.Windows.Forms.Label();
+            this.aiCrazinessLabel = new System.Windows.Forms.Label();
             this.aiCraziness = new System.Windows.Forms.NumericUpDown();
             this.aiIntelligence = new System.Windows.Forms.NumericUpDown();
-            this.label8 = new System.Windows.Forms.Label();
+            this.aiIntelligenceLabel = new System.Windows.Forms.Label();
             this.aiSpeed = new System.Windows.Forms.NumericUpDown();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
+            this.aiSpeedLabel = new System.Windows.Forms.Label();
+            this.aiBrakingLabel = new System.Windows.Forms.Label();
             this.aiBraking = new System.Windows.Forms.NumericUpDown();
-            this.label5 = new System.Windows.Forms.Label();
+            this.aiCutsCornersLabel = new System.Windows.Forms.Label();
             this.aiCutsCorners = new System.Windows.Forms.NumericUpDown();
             this.groupBox9 = new System.Windows.Forms.GroupBox();
             this.button12 = new System.Windows.Forms.Button();
@@ -90,8 +90,8 @@
             this.button10 = new System.Windows.Forms.Button();
             this.button11 = new System.Windows.Forms.Button();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
-            this.button8 = new System.Windows.Forms.Button();
-            this.button9 = new System.Windows.Forms.Button();
+            this.mvdeditHelp = new System.Windows.Forms.Button();
+            this.mvdeditBtn = new System.Windows.Forms.Button();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.button3 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
@@ -102,10 +102,10 @@
             this.xbfobjHelp = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.compressionLevel = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.compressionBar = new System.Windows.Forms.TrackBar();
-            this.button2 = new System.Windows.Forms.Button();
+            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.rfxPackerCompression = new System.Windows.Forms.CheckBox();
+            this.rfxpackHelp = new System.Windows.Forms.Button();
+            this.rfxpackBtn = new System.Windows.Forms.Button();
             this.trackTab = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -128,6 +128,8 @@
             this.statusBar = new System.Windows.Forms.ProgressBar();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.statusState = new System.Windows.Forms.ToolStripStatusLabel();
+            this.debugOptions = new System.Windows.Forms.ToolStripDropDownButton();
+            this.debugOptionsTiming = new System.Windows.Forms.ToolStripMenuItem();
             this.intToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.groupBox1.SuspendLayout();
             this.tabControl.SuspendLayout();
@@ -162,7 +164,7 @@
             this.groupBox5.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.compressionBar)).BeginInit();
+            this.tableLayoutPanel3.SuspendLayout();
             this.trackTab.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -287,18 +289,18 @@
             this.tableLayoutPanel2.ColumnCount = 2;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60F));
-            this.tableLayoutPanel2.Controls.Add(this.label19, 0, 9);
-            this.tableLayoutPanel2.Controls.Add(this.label10, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.corSmallBig_OppLabel, 0, 9);
+            this.tableLayoutPanel2.Controls.Add(this.corSmallLabel, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.corSmall, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.corBig, 1, 1);
-            this.tableLayoutPanel2.Controls.Add(this.label11, 0, 1);
-            this.tableLayoutPanel2.Controls.Add(this.label12, 0, 2);
-            this.tableLayoutPanel2.Controls.Add(this.label13, 0, 3);
-            this.tableLayoutPanel2.Controls.Add(this.label14, 0, 4);
-            this.tableLayoutPanel2.Controls.Add(this.label15, 0, 5);
-            this.tableLayoutPanel2.Controls.Add(this.label16, 0, 6);
-            this.tableLayoutPanel2.Controls.Add(this.label17, 0, 7);
-            this.tableLayoutPanel2.Controls.Add(this.label18, 0, 8);
+            this.tableLayoutPanel2.Controls.Add(this.corBigLabel, 0, 1);
+            this.tableLayoutPanel2.Controls.Add(this.corSmallSmall_SameLabel, 0, 2);
+            this.tableLayoutPanel2.Controls.Add(this.corSmallSmall_OppLabel, 0, 3);
+            this.tableLayoutPanel2.Controls.Add(this.corBigBig_SameLabel, 0, 4);
+            this.tableLayoutPanel2.Controls.Add(this.corBigBig_OppLabel, 0, 5);
+            this.tableLayoutPanel2.Controls.Add(this.corBigSmall_SameLabel, 0, 6);
+            this.tableLayoutPanel2.Controls.Add(this.corSmallBig_SameLabel, 0, 7);
+            this.tableLayoutPanel2.Controls.Add(this.corBigSmall_OppLabel, 0, 8);
             this.tableLayoutPanel2.Controls.Add(this.corSmallSmall_Same, 1, 2);
             this.tableLayoutPanel2.Controls.Add(this.corSmallSmall_Opp, 1, 3);
             this.tableLayoutPanel2.Controls.Add(this.corBigBig_Same, 1, 4);
@@ -323,27 +325,26 @@
             this.tableLayoutPanel2.Size = new System.Drawing.Size(291, 260);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
-            // label19
+            // corSmallBig_OppLabel
             // 
-            this.label19.Location = new System.Drawing.Point(3, 234);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(110, 26);
-            this.label19.TabIndex = 14;
-            this.label19.Text = "SmallBig_Opp";
-            this.label19.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.corSmallBig_OppLabel.Location = new System.Drawing.Point(3, 234);
+            this.corSmallBig_OppLabel.Name = "corSmallBig_OppLabel";
+            this.corSmallBig_OppLabel.Size = new System.Drawing.Size(110, 26);
+            this.corSmallBig_OppLabel.TabIndex = 14;
+            this.corSmallBig_OppLabel.Text = "SmallBig_Opp";
+            this.corSmallBig_OppLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // label10
+            // corSmallLabel
             // 
-            this.label10.Location = new System.Drawing.Point(3, 0);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(110, 26);
-            this.label10.TabIndex = 3;
-            this.label10.Text = "Small";
-            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.corSmallLabel.Location = new System.Drawing.Point(3, 0);
+            this.corSmallLabel.Name = "corSmallLabel";
+            this.corSmallLabel.Size = new System.Drawing.Size(110, 26);
+            this.corSmallLabel.TabIndex = 3;
+            this.corSmallLabel.Text = "Small";
+            this.corSmallLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // corSmall
             // 
-            this.corSmall.Cursor = System.Windows.Forms.Cursors.Default;
             this.corSmall.DecimalPlaces = 2;
             this.corSmall.Increment = new decimal(new int[] {
             1,
@@ -362,7 +363,6 @@
             // 
             // corBig
             // 
-            this.corBig.Cursor = System.Windows.Forms.Cursors.Default;
             this.corBig.DecimalPlaces = 2;
             this.corBig.Increment = new decimal(new int[] {
             1,
@@ -379,81 +379,80 @@
             this.corBig.Size = new System.Drawing.Size(169, 20);
             this.corBig.TabIndex = 5;
             // 
-            // label11
+            // corBigLabel
             // 
-            this.label11.Location = new System.Drawing.Point(3, 26);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(110, 26);
-            this.label11.TabIndex = 6;
-            this.label11.Text = "Big";
-            this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.corBigLabel.Location = new System.Drawing.Point(3, 26);
+            this.corBigLabel.Name = "corBigLabel";
+            this.corBigLabel.Size = new System.Drawing.Size(110, 26);
+            this.corBigLabel.TabIndex = 6;
+            this.corBigLabel.Text = "Big";
+            this.corBigLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // label12
+            // corSmallSmall_SameLabel
             // 
-            this.label12.Location = new System.Drawing.Point(3, 52);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(110, 26);
-            this.label12.TabIndex = 7;
-            this.label12.Text = "SmallSmall_Same";
-            this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.corSmallSmall_SameLabel.Location = new System.Drawing.Point(3, 52);
+            this.corSmallSmall_SameLabel.Name = "corSmallSmall_SameLabel";
+            this.corSmallSmall_SameLabel.Size = new System.Drawing.Size(110, 26);
+            this.corSmallSmall_SameLabel.TabIndex = 7;
+            this.corSmallSmall_SameLabel.Text = "SmallSmall_Same";
+            this.corSmallSmall_SameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // label13
+            // corSmallSmall_OppLabel
             // 
-            this.label13.Location = new System.Drawing.Point(3, 78);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(110, 26);
-            this.label13.TabIndex = 8;
-            this.label13.Text = "SmallSmall_Opp";
-            this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.corSmallSmall_OppLabel.Location = new System.Drawing.Point(3, 78);
+            this.corSmallSmall_OppLabel.Name = "corSmallSmall_OppLabel";
+            this.corSmallSmall_OppLabel.Size = new System.Drawing.Size(110, 26);
+            this.corSmallSmall_OppLabel.TabIndex = 8;
+            this.corSmallSmall_OppLabel.Text = "SmallSmall_Opp";
+            this.corSmallSmall_OppLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // label14
+            // corBigBig_SameLabel
             // 
-            this.label14.Location = new System.Drawing.Point(3, 104);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(110, 26);
-            this.label14.TabIndex = 9;
-            this.label14.Text = "BigBig_Same";
-            this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.corBigBig_SameLabel.Location = new System.Drawing.Point(3, 104);
+            this.corBigBig_SameLabel.Name = "corBigBig_SameLabel";
+            this.corBigBig_SameLabel.Size = new System.Drawing.Size(110, 26);
+            this.corBigBig_SameLabel.TabIndex = 9;
+            this.corBigBig_SameLabel.Text = "BigBig_Same";
+            this.corBigBig_SameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // label15
+            // corBigBig_OppLabel
             // 
-            this.label15.Location = new System.Drawing.Point(3, 130);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(110, 26);
-            this.label15.TabIndex = 10;
-            this.label15.Text = "BigBig_Opp";
-            this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.corBigBig_OppLabel.Location = new System.Drawing.Point(3, 130);
+            this.corBigBig_OppLabel.Name = "corBigBig_OppLabel";
+            this.corBigBig_OppLabel.Size = new System.Drawing.Size(110, 26);
+            this.corBigBig_OppLabel.TabIndex = 10;
+            this.corBigBig_OppLabel.Text = "BigBig_Opp";
+            this.corBigBig_OppLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // label16
+            // corBigSmall_SameLabel
             // 
-            this.label16.Location = new System.Drawing.Point(3, 156);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(110, 26);
-            this.label16.TabIndex = 11;
-            this.label16.Text = "BigSmall_Same";
-            this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.corBigSmall_SameLabel.Location = new System.Drawing.Point(3, 156);
+            this.corBigSmall_SameLabel.Name = "corBigSmall_SameLabel";
+            this.corBigSmall_SameLabel.Size = new System.Drawing.Size(110, 26);
+            this.corBigSmall_SameLabel.TabIndex = 11;
+            this.corBigSmall_SameLabel.Text = "BigSmall_Same";
+            this.corBigSmall_SameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // label17
+            // corSmallBig_SameLabel
             // 
-            this.label17.Location = new System.Drawing.Point(3, 182);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(110, 26);
-            this.label17.TabIndex = 12;
-            this.label17.Text = "SmallBig_Same";
-            this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.corSmallBig_SameLabel.Location = new System.Drawing.Point(3, 182);
+            this.corSmallBig_SameLabel.Name = "corSmallBig_SameLabel";
+            this.corSmallBig_SameLabel.Size = new System.Drawing.Size(110, 26);
+            this.corSmallBig_SameLabel.TabIndex = 12;
+            this.corSmallBig_SameLabel.Text = "SmallBig_Same";
+            this.corSmallBig_SameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // label18
+            // corBigSmall_OppLabel
             // 
-            this.label18.Location = new System.Drawing.Point(3, 208);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(110, 26);
-            this.label18.TabIndex = 13;
-            this.label18.Text = "BigSmall_Opp";
-            this.label18.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.corBigSmall_OppLabel.Location = new System.Drawing.Point(3, 208);
+            this.corBigSmall_OppLabel.Name = "corBigSmall_OppLabel";
+            this.corBigSmall_OppLabel.Size = new System.Drawing.Size(110, 26);
+            this.corBigSmall_OppLabel.TabIndex = 13;
+            this.corBigSmall_OppLabel.Text = "BigSmall_Opp";
+            this.corBigSmall_OppLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // corSmallSmall_Same
             // 
-            this.corSmallSmall_Same.Cursor = System.Windows.Forms.Cursors.Default;
             this.corSmallSmall_Same.DecimalPlaces = 2;
             this.corSmallSmall_Same.Increment = new decimal(new int[] {
             1,
@@ -472,7 +471,6 @@
             // 
             // corSmallSmall_Opp
             // 
-            this.corSmallSmall_Opp.Cursor = System.Windows.Forms.Cursors.Default;
             this.corSmallSmall_Opp.DecimalPlaces = 2;
             this.corSmallSmall_Opp.Increment = new decimal(new int[] {
             1,
@@ -491,7 +489,6 @@
             // 
             // corBigBig_Same
             // 
-            this.corBigBig_Same.Cursor = System.Windows.Forms.Cursors.Default;
             this.corBigBig_Same.DecimalPlaces = 2;
             this.corBigBig_Same.Increment = new decimal(new int[] {
             1,
@@ -510,7 +507,6 @@
             // 
             // corBigBig_Opp
             // 
-            this.corBigBig_Opp.Cursor = System.Windows.Forms.Cursors.Default;
             this.corBigBig_Opp.DecimalPlaces = 2;
             this.corBigBig_Opp.Increment = new decimal(new int[] {
             1,
@@ -529,7 +525,6 @@
             // 
             // corBigSmall_Same
             // 
-            this.corBigSmall_Same.Cursor = System.Windows.Forms.Cursors.Default;
             this.corBigSmall_Same.DecimalPlaces = 2;
             this.corBigSmall_Same.Increment = new decimal(new int[] {
             1,
@@ -548,7 +543,6 @@
             // 
             // corSmallBig_Same
             // 
-            this.corSmallBig_Same.Cursor = System.Windows.Forms.Cursors.Default;
             this.corSmallBig_Same.DecimalPlaces = 2;
             this.corSmallBig_Same.Increment = new decimal(new int[] {
             1,
@@ -567,7 +561,6 @@
             // 
             // corBigSmall_Opp
             // 
-            this.corBigSmall_Opp.Cursor = System.Windows.Forms.Cursors.Default;
             this.corBigSmall_Opp.DecimalPlaces = 2;
             this.corBigSmall_Opp.Increment = new decimal(new int[] {
             1,
@@ -586,7 +579,6 @@
             // 
             // corSmallBig_Opp
             // 
-            this.corSmallBig_Opp.Cursor = System.Windows.Forms.Cursors.Default;
             this.corSmallBig_Opp.DecimalPlaces = 2;
             this.corSmallBig_Opp.Increment = new decimal(new int[] {
             1,
@@ -653,22 +645,22 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60F));
             this.tableLayoutPanel1.Controls.Add(this.aiBlocking, 1, 3);
-            this.tableLayoutPanel1.Controls.Add(this.label20, 0, 3);
+            this.tableLayoutPanel1.Controls.Add(this.aiBlockingLabel, 0, 3);
             this.tableLayoutPanel1.Controls.Add(this.aiRacingLine, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.aiReflex, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.label2, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.aiReflexLabel, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.aiOvertaking, 1, 2);
-            this.tableLayoutPanel1.Controls.Add(this.label3, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.label4, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.label9, 0, 8);
+            this.tableLayoutPanel1.Controls.Add(this.aiRacingLineLabel, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.aiOvertakingLabel, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.aiCrazinessLabel, 0, 8);
             this.tableLayoutPanel1.Controls.Add(this.aiCraziness, 1, 8);
             this.tableLayoutPanel1.Controls.Add(this.aiIntelligence, 1, 7);
-            this.tableLayoutPanel1.Controls.Add(this.label8, 0, 7);
+            this.tableLayoutPanel1.Controls.Add(this.aiIntelligenceLabel, 0, 7);
             this.tableLayoutPanel1.Controls.Add(this.aiSpeed, 1, 6);
-            this.tableLayoutPanel1.Controls.Add(this.label7, 0, 6);
-            this.tableLayoutPanel1.Controls.Add(this.label6, 0, 5);
+            this.tableLayoutPanel1.Controls.Add(this.aiSpeedLabel, 0, 6);
+            this.tableLayoutPanel1.Controls.Add(this.aiBrakingLabel, 0, 5);
             this.tableLayoutPanel1.Controls.Add(this.aiBraking, 1, 5);
-            this.tableLayoutPanel1.Controls.Add(this.label5, 0, 4);
+            this.tableLayoutPanel1.Controls.Add(this.aiCutsCornersLabel, 0, 4);
             this.tableLayoutPanel1.Controls.Add(this.aiCutsCorners, 1, 4);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(6, 51);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -687,7 +679,6 @@
             // 
             // aiBlocking
             // 
-            this.aiBlocking.Cursor = System.Windows.Forms.Cursors.Default;
             this.aiBlocking.Location = new System.Drawing.Point(119, 81);
             this.aiBlocking.Maximum = new decimal(new int[] {
             255,
@@ -698,18 +689,17 @@
             this.aiBlocking.Size = new System.Drawing.Size(169, 20);
             this.aiBlocking.TabIndex = 17;
             // 
-            // label20
+            // aiBlockingLabel
             // 
-            this.label20.Location = new System.Drawing.Point(3, 78);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(110, 23);
-            this.label20.TabIndex = 17;
-            this.label20.Text = "Blocking";
-            this.label20.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.aiBlockingLabel.Location = new System.Drawing.Point(3, 78);
+            this.aiBlockingLabel.Name = "aiBlockingLabel";
+            this.aiBlockingLabel.Size = new System.Drawing.Size(110, 23);
+            this.aiBlockingLabel.TabIndex = 17;
+            this.aiBlockingLabel.Text = "Blocking";
+            this.aiBlockingLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // aiRacingLine
             // 
-            this.aiRacingLine.Cursor = System.Windows.Forms.Cursors.Default;
             this.aiRacingLine.Location = new System.Drawing.Point(119, 29);
             this.aiRacingLine.Maximum = new decimal(new int[] {
             32767,
@@ -722,7 +712,6 @@
             // 
             // aiReflex
             // 
-            this.aiReflex.Cursor = System.Windows.Forms.Cursors.Default;
             this.aiReflex.Location = new System.Drawing.Point(119, 3);
             this.aiReflex.Maximum = new decimal(new int[] {
             32767,
@@ -733,18 +722,17 @@
             this.aiReflex.Size = new System.Drawing.Size(169, 20);
             this.aiReflex.TabIndex = 1;
             // 
-            // label2
+            // aiReflexLabel
             // 
-            this.label2.Location = new System.Drawing.Point(3, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(110, 26);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Reflex";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.aiReflexLabel.Location = new System.Drawing.Point(3, 0);
+            this.aiReflexLabel.Name = "aiReflexLabel";
+            this.aiReflexLabel.Size = new System.Drawing.Size(110, 26);
+            this.aiReflexLabel.TabIndex = 2;
+            this.aiReflexLabel.Text = "Reflex";
+            this.aiReflexLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // aiOvertaking
             // 
-            this.aiOvertaking.Cursor = System.Windows.Forms.Cursors.Default;
             this.aiOvertaking.Location = new System.Drawing.Point(119, 55);
             this.aiOvertaking.Maximum = new decimal(new int[] {
             32767,
@@ -755,36 +743,35 @@
             this.aiOvertaking.Size = new System.Drawing.Size(169, 20);
             this.aiOvertaking.TabIndex = 3;
             // 
-            // label3
+            // aiRacingLineLabel
             // 
-            this.label3.Location = new System.Drawing.Point(3, 26);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(110, 26);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "RacingLine";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.aiRacingLineLabel.Location = new System.Drawing.Point(3, 26);
+            this.aiRacingLineLabel.Name = "aiRacingLineLabel";
+            this.aiRacingLineLabel.Size = new System.Drawing.Size(110, 26);
+            this.aiRacingLineLabel.TabIndex = 4;
+            this.aiRacingLineLabel.Text = "RacingLine";
+            this.aiRacingLineLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // label4
+            // aiOvertakingLabel
             // 
-            this.label4.Location = new System.Drawing.Point(3, 52);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(110, 26);
-            this.label4.TabIndex = 5;
-            this.label4.Text = "Overtaking";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.aiOvertakingLabel.Location = new System.Drawing.Point(3, 52);
+            this.aiOvertakingLabel.Name = "aiOvertakingLabel";
+            this.aiOvertakingLabel.Size = new System.Drawing.Size(110, 26);
+            this.aiOvertakingLabel.TabIndex = 5;
+            this.aiOvertakingLabel.Text = "Overtaking";
+            this.aiOvertakingLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // label9
+            // aiCrazinessLabel
             // 
-            this.label9.Location = new System.Drawing.Point(3, 208);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(110, 26);
-            this.label9.TabIndex = 15;
-            this.label9.Text = "Craziness";
-            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.aiCrazinessLabel.Location = new System.Drawing.Point(3, 208);
+            this.aiCrazinessLabel.Name = "aiCrazinessLabel";
+            this.aiCrazinessLabel.Size = new System.Drawing.Size(110, 26);
+            this.aiCrazinessLabel.TabIndex = 15;
+            this.aiCrazinessLabel.Text = "Craziness";
+            this.aiCrazinessLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // aiCraziness
             // 
-            this.aiCraziness.Cursor = System.Windows.Forms.Cursors.Default;
             this.aiCraziness.Location = new System.Drawing.Point(119, 211);
             this.aiCraziness.Maximum = new decimal(new int[] {
             255,
@@ -797,7 +784,6 @@
             // 
             // aiIntelligence
             // 
-            this.aiIntelligence.Cursor = System.Windows.Forms.Cursors.Default;
             this.aiIntelligence.Location = new System.Drawing.Point(119, 185);
             this.aiIntelligence.Maximum = new decimal(new int[] {
             255,
@@ -808,18 +794,17 @@
             this.aiIntelligence.Size = new System.Drawing.Size(169, 20);
             this.aiIntelligence.TabIndex = 14;
             // 
-            // label8
+            // aiIntelligenceLabel
             // 
-            this.label8.Location = new System.Drawing.Point(3, 182);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(110, 26);
-            this.label8.TabIndex = 13;
-            this.label8.Text = "Intelligence";
-            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.aiIntelligenceLabel.Location = new System.Drawing.Point(3, 182);
+            this.aiIntelligenceLabel.Name = "aiIntelligenceLabel";
+            this.aiIntelligenceLabel.Size = new System.Drawing.Size(110, 26);
+            this.aiIntelligenceLabel.TabIndex = 13;
+            this.aiIntelligenceLabel.Text = "Intelligence";
+            this.aiIntelligenceLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // aiSpeed
             // 
-            this.aiSpeed.Cursor = System.Windows.Forms.Cursors.Default;
             this.aiSpeed.Location = new System.Drawing.Point(119, 159);
             this.aiSpeed.Maximum = new decimal(new int[] {
             32767,
@@ -830,27 +815,26 @@
             this.aiSpeed.Size = new System.Drawing.Size(169, 20);
             this.aiSpeed.TabIndex = 12;
             // 
-            // label7
+            // aiSpeedLabel
             // 
-            this.label7.Location = new System.Drawing.Point(3, 156);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(110, 26);
-            this.label7.TabIndex = 11;
-            this.label7.Text = "Speed";
-            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.aiSpeedLabel.Location = new System.Drawing.Point(3, 156);
+            this.aiSpeedLabel.Name = "aiSpeedLabel";
+            this.aiSpeedLabel.Size = new System.Drawing.Size(110, 26);
+            this.aiSpeedLabel.TabIndex = 11;
+            this.aiSpeedLabel.Text = "Speed";
+            this.aiSpeedLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // label6
+            // aiBrakingLabel
             // 
-            this.label6.Location = new System.Drawing.Point(3, 130);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(110, 26);
-            this.label6.TabIndex = 9;
-            this.label6.Text = "Braking";
-            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.aiBrakingLabel.Location = new System.Drawing.Point(3, 130);
+            this.aiBrakingLabel.Name = "aiBrakingLabel";
+            this.aiBrakingLabel.Size = new System.Drawing.Size(110, 26);
+            this.aiBrakingLabel.TabIndex = 9;
+            this.aiBrakingLabel.Text = "Braking";
+            this.aiBrakingLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // aiBraking
             // 
-            this.aiBraking.Cursor = System.Windows.Forms.Cursors.Default;
             this.aiBraking.Location = new System.Drawing.Point(119, 133);
             this.aiBraking.Maximum = new decimal(new int[] {
             32767,
@@ -861,18 +845,17 @@
             this.aiBraking.Size = new System.Drawing.Size(169, 20);
             this.aiBraking.TabIndex = 10;
             // 
-            // label5
+            // aiCutsCornersLabel
             // 
-            this.label5.Location = new System.Drawing.Point(3, 104);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(110, 26);
-            this.label5.TabIndex = 7;
-            this.label5.Text = "CutsCorners";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.aiCutsCornersLabel.Location = new System.Drawing.Point(3, 104);
+            this.aiCutsCornersLabel.Name = "aiCutsCornersLabel";
+            this.aiCutsCornersLabel.Size = new System.Drawing.Size(110, 26);
+            this.aiCutsCornersLabel.TabIndex = 7;
+            this.aiCutsCornersLabel.Text = "CutsCorners";
+            this.aiCutsCornersLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // aiCutsCorners
             // 
-            this.aiCutsCorners.Cursor = System.Windows.Forms.Cursors.Default;
             this.aiCutsCorners.Location = new System.Drawing.Point(119, 107);
             this.aiCutsCorners.Maximum = new decimal(new int[] {
             255,
@@ -951,36 +934,34 @@
             // 
             // groupBox7
             // 
-            this.groupBox7.Controls.Add(this.button8);
-            this.groupBox7.Controls.Add(this.button9);
-            this.groupBox7.Location = new System.Drawing.Point(212, 114);
+            this.groupBox7.Controls.Add(this.mvdeditHelp);
+            this.groupBox7.Controls.Add(this.mvdeditBtn);
+            this.groupBox7.Location = new System.Drawing.Point(418, 6);
             this.groupBox7.Name = "groupBox7";
             this.groupBox7.Size = new System.Drawing.Size(200, 48);
             this.groupBox7.TabIndex = 4;
             this.groupBox7.TabStop = false;
-            this.groupBox7.Text = "Placeholder";
-            this.groupBox7.Visible = false;
+            this.groupBox7.Text = "MotoVideo editor";
             // 
-            // button8
+            // mvdeditHelp
             // 
-            this.button8.Enabled = false;
-            this.button8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button8.Location = new System.Drawing.Point(171, 19);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(23, 23);
-            this.button8.TabIndex = 1;
-            this.button8.Text = "?";
-            this.button8.UseVisualStyleBackColor = true;
+            this.mvdeditHelp.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mvdeditHelp.Location = new System.Drawing.Point(171, 19);
+            this.mvdeditHelp.Name = "mvdeditHelp";
+            this.mvdeditHelp.Size = new System.Drawing.Size(23, 23);
+            this.mvdeditHelp.TabIndex = 1;
+            this.mvdeditHelp.Text = "?";
+            this.mvdeditHelp.UseVisualStyleBackColor = true;
             // 
-            // button9
+            // mvdeditBtn
             // 
-            this.button9.Enabled = false;
-            this.button9.Location = new System.Drawing.Point(6, 19);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(159, 23);
-            this.button9.TabIndex = 0;
-            this.button9.Text = "Placeholder";
-            this.button9.UseVisualStyleBackColor = true;
+            this.mvdeditBtn.Location = new System.Drawing.Point(6, 19);
+            this.mvdeditBtn.Name = "mvdeditBtn";
+            this.mvdeditBtn.Size = new System.Drawing.Size(159, 23);
+            this.mvdeditBtn.TabIndex = 0;
+            this.mvdeditBtn.Text = "Open editor";
+            this.mvdeditBtn.UseVisualStyleBackColor = true;
+            this.mvdeditBtn.Click += new System.EventHandler(this.mvdeditBtn_Click);
             // 
             // groupBox6
             // 
@@ -1019,7 +1000,7 @@
             this.groupBox5.Controls.Add(this.button5);
             this.groupBox5.Controls.Add(this.mdfeditBtn);
             this.groupBox5.ForeColor = System.Drawing.Color.Red;
-            this.groupBox5.Location = new System.Drawing.Point(418, 6);
+            this.groupBox5.Location = new System.Drawing.Point(212, 114);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(200, 48);
             this.groupBox5.TabIndex = 3;
@@ -1053,12 +1034,14 @@
             // 
             this.groupBox4.Controls.Add(this.xbfobjHelp);
             this.groupBox4.Controls.Add(this.button4);
+            this.groupBox4.ForeColor = System.Drawing.Color.BlueViolet;
             this.groupBox4.Location = new System.Drawing.Point(212, 6);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(200, 48);
             this.groupBox4.TabIndex = 2;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "XBF to OBJ converter";
+            this.intToolTip.SetToolTip(this.groupBox4, "Experimental feature, use at your own risk.");
             // 
             // xbfobjHelp
             // 
@@ -1083,61 +1066,63 @@
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.compressionLevel);
-            this.groupBox3.Controls.Add(this.button1);
-            this.groupBox3.Controls.Add(this.compressionBar);
-            this.groupBox3.Controls.Add(this.button2);
-            this.groupBox3.ForeColor = System.Drawing.Color.Red;
+            this.groupBox3.Controls.Add(this.tableLayoutPanel3);
+            this.groupBox3.Controls.Add(this.rfxpackHelp);
+            this.groupBox3.Controls.Add(this.rfxpackBtn);
+            this.groupBox3.ForeColor = System.Drawing.Color.Black;
             this.groupBox3.Location = new System.Drawing.Point(6, 60);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(200, 102);
             this.groupBox3.TabIndex = 2;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "RFH/RFD packer";
-            this.intToolTip.SetToolTip(this.groupBox3, "Not yet implemented!");
             // 
-            // compressionLevel
+            // tableLayoutPanel3
             // 
-            this.compressionLevel.AutoSize = true;
-            this.compressionLevel.Location = new System.Drawing.Point(6, 64);
-            this.compressionLevel.Name = "compressionLevel";
-            this.compressionLevel.Size = new System.Drawing.Size(79, 13);
-            this.compressionLevel.TabIndex = 2;
-            this.compressionLevel.Text = "Compression: 0";
-            this.compressionLevel.Click += new System.EventHandler(this.compressionLevel_Click);
+            this.tableLayoutPanel3.ColumnCount = 2;
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.Controls.Add(this.rfxPackerCompression, 0, 0);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(6, 49);
+            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+            this.tableLayoutPanel3.RowCount = 2;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(188, 47);
+            this.tableLayoutPanel3.TabIndex = 2;
             // 
-            // button1
+            // rfxPackerCompression
             // 
-            this.button1.Enabled = false;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(171, 19);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(23, 23);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "?";
-            this.button1.UseVisualStyleBackColor = true;
+            this.rfxPackerCompression.AutoSize = true;
+            this.rfxPackerCompression.Enabled = false;
+            this.rfxPackerCompression.Location = new System.Drawing.Point(3, 3);
+            this.rfxPackerCompression.Name = "rfxPackerCompression";
+            this.rfxPackerCompression.Size = new System.Drawing.Size(86, 17);
+            this.rfxPackerCompression.TabIndex = 0;
+            this.rfxPackerCompression.Text = "Compression";
+            this.intToolTip.SetToolTip(this.rfxPackerCompression, "Compression currently not supported.");
+            this.rfxPackerCompression.UseVisualStyleBackColor = true;
             // 
-            // compressionBar
+            // rfxpackHelp
             // 
-            this.compressionBar.BackColor = System.Drawing.SystemColors.Window;
-            this.compressionBar.Enabled = false;
-            this.compressionBar.Location = new System.Drawing.Point(91, 50);
-            this.compressionBar.Maximum = 9;
-            this.compressionBar.Name = "compressionBar";
-            this.compressionBar.Size = new System.Drawing.Size(103, 45);
-            this.compressionBar.TabIndex = 2;
-            this.compressionBar.TickStyle = System.Windows.Forms.TickStyle.TopLeft;
-            this.compressionBar.ValueChanged += new System.EventHandler(this.compressionBar_ValueChanged);
+            this.rfxpackHelp.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rfxpackHelp.Location = new System.Drawing.Point(171, 19);
+            this.rfxpackHelp.Name = "rfxpackHelp";
+            this.rfxpackHelp.Size = new System.Drawing.Size(23, 23);
+            this.rfxpackHelp.TabIndex = 1;
+            this.rfxpackHelp.Text = "?";
+            this.rfxpackHelp.UseVisualStyleBackColor = true;
+            this.rfxpackHelp.Click += new System.EventHandler(this.RFx_Pack_Help_Click);
             // 
-            // button2
+            // rfxpackBtn
             // 
-            this.button2.Enabled = false;
-            this.button2.Location = new System.Drawing.Point(6, 19);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(159, 23);
-            this.button2.TabIndex = 0;
-            this.button2.Text = "Select folder";
-            this.button2.UseVisualStyleBackColor = true;
+            this.rfxpackBtn.Location = new System.Drawing.Point(6, 19);
+            this.rfxpackBtn.Name = "rfxpackBtn";
+            this.rfxpackBtn.Size = new System.Drawing.Size(159, 23);
+            this.rfxpackBtn.TabIndex = 0;
+            this.rfxpackBtn.Text = "Select folder";
+            this.rfxpackBtn.UseVisualStyleBackColor = true;
+            this.rfxpackBtn.Click += new System.EventHandler(this.RFx_Pack_Click);
             // 
             // trackTab
             // 
@@ -1286,15 +1271,15 @@
             // 
             // githubLink
             // 
-            this.githubLink.AutoSize = true;
-            this.githubLink.Location = new System.Drawing.Point(200, 77);
+            this.githubLink.Location = new System.Drawing.Point(3, 78);
             this.githubLink.Name = "githubLink";
-            this.githubLink.Size = new System.Drawing.Size(224, 13);
+            this.githubLink.Size = new System.Drawing.Size(618, 13);
             this.githubLink.TabIndex = 3;
             this.githubLink.TabStop = true;
             this.githubLink.Text = "https://github.com/YellowberryHN/SRtoolbox";
             this.githubLink.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.githubLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.githubLink_LinkClicked);
+            this.githubLink.Layout += new System.Windows.Forms.LayoutEventHandler(this.githubLink_Layout);
             // 
             // label1
             // 
@@ -1354,7 +1339,8 @@
             // statusStrip
             // 
             this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.statusState});
+            this.statusState,
+            this.debugOptions});
             this.statusStrip.Location = new System.Drawing.Point(0, 595);
             this.statusStrip.Name = "statusStrip";
             this.statusStrip.Size = new System.Drawing.Size(656, 22);
@@ -1366,6 +1352,24 @@
             this.statusState.Name = "statusState";
             this.statusState.Size = new System.Drawing.Size(70, 17);
             this.statusState.Text = "Initializing...";
+            // 
+            // debugOptions
+            // 
+            this.debugOptions.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.debugOptions.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.debugOptionsTiming});
+            this.debugOptions.Image = ((System.Drawing.Image)(resources.GetObject("debugOptions.Image")));
+            this.debugOptions.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.debugOptions.Name = "debugOptions";
+            this.debugOptions.Size = new System.Drawing.Size(100, 20);
+            this.debugOptions.Text = "Debug Options";
+            // 
+            // debugOptionsTiming
+            // 
+            this.debugOptionsTiming.CheckOnClick = true;
+            this.debugOptionsTiming.Name = "debugOptionsTiming";
+            this.debugOptionsTiming.Size = new System.Drawing.Size(111, 22);
+            this.debugOptionsTiming.Text = "Timing";
             // 
             // MainForm
             // 
@@ -1415,8 +1419,8 @@
             this.groupBox5.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.compressionBar)).EndInit();
+            this.tableLayoutPanel3.ResumeLayout(false);
+            this.tableLayoutPanel3.PerformLayout();
             this.trackTab.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
@@ -1447,10 +1451,8 @@
         private System.Windows.Forms.Button trkxtkLoad;
         private System.Windows.Forms.TabPage aboutTab;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.Label compressionLevel;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TrackBar compressionBar;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button rfxpackHelp;
+        private System.Windows.Forms.Button rfxpackBtn;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button mdfeditBtn;
@@ -1466,8 +1468,8 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.GroupBox groupBox7;
-        private System.Windows.Forms.Button button8;
-        private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.Button mvdeditHelp;
+        private System.Windows.Forms.Button mvdeditBtn;
         private System.Windows.Forms.GroupBox groupBox9;
         private System.Windows.Forms.Button button12;
         private System.Windows.Forms.Button button13;
@@ -1478,34 +1480,34 @@
         private System.Windows.Forms.GroupBox aiDataGroup;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.NumericUpDown aiReflex;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label aiReflexLabel;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
-        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label corSmallLabel;
         private System.Windows.Forms.NumericUpDown corSmall;
         private System.Windows.Forms.NumericUpDown corBig;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label corBigLabel;
+        private System.Windows.Forms.Label corSmallSmall_SameLabel;
+        private System.Windows.Forms.Label aiCrazinessLabel;
         private System.Windows.Forms.NumericUpDown aiBraking;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label aiBrakingLabel;
         private System.Windows.Forms.NumericUpDown aiCutsCorners;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label aiCutsCornersLabel;
         private System.Windows.Forms.NumericUpDown aiRacingLine;
         private System.Windows.Forms.NumericUpDown aiOvertaking;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label aiRacingLineLabel;
+        private System.Windows.Forms.Label aiOvertakingLabel;
+        private System.Windows.Forms.Label aiSpeedLabel;
         private System.Windows.Forms.NumericUpDown aiSpeed;
-        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label aiIntelligenceLabel;
         private System.Windows.Forms.NumericUpDown aiIntelligence;
         private System.Windows.Forms.NumericUpDown aiCraziness;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label corSmallSmall_OppLabel;
+        private System.Windows.Forms.Label corBigBig_SameLabel;
+        private System.Windows.Forms.Label corBigBig_OppLabel;
+        private System.Windows.Forms.Label corSmallBig_OppLabel;
+        private System.Windows.Forms.Label corBigSmall_SameLabel;
+        private System.Windows.Forms.Label corSmallBig_SameLabel;
+        private System.Windows.Forms.Label corBigSmall_OppLabel;
         private System.Windows.Forms.NumericUpDown corSmallSmall_Same;
         private System.Windows.Forms.NumericUpDown corSmallSmall_Opp;
         private System.Windows.Forms.NumericUpDown corBigBig_Same;
@@ -1518,7 +1520,7 @@
         private System.Windows.Forms.Button cornLoadBtn;
         private System.Windows.Forms.Button aiLoadBtn;
         private System.Windows.Forms.NumericUpDown aiBlocking;
-        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Label aiBlockingLabel;
         private System.Windows.Forms.Button corneringHelp;
         private System.Windows.Forms.Button button19;
         private System.Windows.Forms.StatusStrip statusStrip;
@@ -1535,6 +1537,10 @@
         private System.Windows.Forms.GroupBox groupBox12;
         private System.Windows.Forms.Button aiSaveBtn;
         private System.Windows.Forms.ToolTip intToolTip;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
+        private System.Windows.Forms.CheckBox rfxPackerCompression;
+        private System.Windows.Forms.ToolStripDropDownButton debugOptions;
+        private System.Windows.Forms.ToolStripMenuItem debugOptionsTiming;
     }
 }
 

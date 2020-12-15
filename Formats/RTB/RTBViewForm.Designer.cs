@@ -30,10 +30,10 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RTBViewForm));
             this.rtbDataGrid = new System.Windows.Forms.DataGridView();
-            this.rtbLoadBtn = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.assetId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.assetPath = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.rtbLoadBtn = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.rtbDataGrid)).BeginInit();
             this.SuspendLayout();
             // 
@@ -60,6 +60,21 @@
             this.rtbDataGrid.Size = new System.Drawing.Size(572, 371);
             this.rtbDataGrid.TabIndex = 0;
             // 
+            // assetId
+            // 
+            this.assetId.FillWeight = 20.19841F;
+            this.assetId.HeaderText = "ID";
+            this.assetId.MinimumWidth = 40;
+            this.assetId.Name = "assetId";
+            this.assetId.ReadOnly = true;
+            // 
+            // assetPath
+            // 
+            this.assetPath.FillWeight = 79.27875F;
+            this.assetPath.HeaderText = "Path";
+            this.assetPath.Name = "assetPath";
+            this.assetPath.ReadOnly = true;
+            // 
             // rtbLoadBtn
             // 
             this.rtbLoadBtn.Location = new System.Drawing.Point(12, 12);
@@ -77,21 +92,6 @@
             this.textBox1.Size = new System.Drawing.Size(572, 20);
             this.textBox1.TabIndex = 2;
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
-            // 
-            // assetId
-            // 
-            this.assetId.FillWeight = 20.19841F;
-            this.assetId.HeaderText = "ID";
-            this.assetId.MinimumWidth = 40;
-            this.assetId.Name = "assetId";
-            this.assetId.ReadOnly = true;
-            // 
-            // assetPath
-            // 
-            this.assetPath.FillWeight = 79.27875F;
-            this.assetPath.HeaderText = "Path";
-            this.assetPath.Name = "assetPath";
-            this.assetPath.ReadOnly = true;
             // 
             // RTBViewForm
             // 

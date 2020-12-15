@@ -63,9 +63,9 @@ namespace SRtoolbox.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
-        internal static System.Drawing.Icon toolbox_red {
+        internal static System.Drawing.Icon icon {
             get {
-                object obj = ResourceManager.GetObject("toolbox_red", resourceCulture);
+                object obj = ResourceManager.GetObject("icon", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
             }
         }

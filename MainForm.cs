@@ -1,5 +1,4 @@
-﻿using Pfim;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -11,15 +10,27 @@ using System.IO;
 using System.Windows.Forms;
 using System.Reflection;
 using System.Diagnostics;
+using LSRutil;
+using LSRutil.TRK;
+using LSRutil.RF;
+using Microsoft.WindowsAPICodePack.Dialogs;
+using LSRutil.AI;
+using System.Runtime.InteropServices;
+using Pfim;
+using System.Drawing.Imaging;
 
 namespace SRtoolbox
 {
     public partial class MainForm : Form
     {
-        public string tagline = "It's all in the timing...";
-        public string version = "0.1.1";
+        private string githubLinkURL = "https://github.com/YellowberryHN/SRtoolbox";
 
-        public TRKFile trackFile;
+        public string tagline = "What if we used a library?";
+        public string version = "2.0.0";
+
+        public Track track;
+
+        private Stopwatch timer = new Stopwatch();
 
         public void checkFile(string file)
         {
@@ -30,9 +41,14 @@ namespace SRtoolbox
                 tabControl.SelectedIndex = 1; // Track tab
                 trkLoad(file);
             }
+            else if (ext == ".mvd")
+            {
+                tabControl.SelectedIndex = 2; // Moto Video tab
+                //mvdLoad(file);
+            }
             else if (ext == ".bin") aiLoad(file);
             else if (ext == ".dat") cornLoad(file);
-            else if (ext == ".rfh") rfxUnpack(file);
+            else if (ext == ".rfh" || ext == ".rfd") rfxUnpack(file);
         }
 
         public MainForm()
@@ -51,40 +67,93 @@ namespace SRtoolbox
             }
         }
 
+        protected void timerResult()
+        {
+            timer.Stop();
+            if (debugOptionsTiming.Checked) MessageBox.Show(string.Format("Operation took {0}ms.", timer.ElapsedMilliseconds), "(DEBUG) Internal Timer");
+        }
+
         public void rfxUnpack(string filename)
         {
             statusBar.Style = ProgressBarStyle.Marquee;
             statusState.Text = "Working...";
 
-            string text = Path.GetDirectoryName(filename) + "\\" + Path.GetFileNameWithoutExtension(filename) + ".rfd";
-            if (File.Exists(text))
+            timer.Restart();
+
+            string resourcePath = Path.GetDirectoryName(filename) + "/" + Path.GetFileNameWithoutExtension(filename) + ".rfd";
+            if (File.Exists(resourcePath))
             {
-                RFH rfh = new RFH();
-                rfh.load(filename, text);
-                rfh.extractAllFiles(Path.GetFileNameWithoutExtension(filename));
+                var reader = new RfReader();
+                var resArchive = reader.ReadArchive(filename);
+                resArchive.ExtractAllFiles(Path.GetFileNameWithoutExtension(filename));
                 MessageBox.Show("Successfully unpacked " + Path.GetFileName(filename) + ".", "RFH/RFD Unpacker");
             }
             else
             {
-                MessageBox.Show("Error: Could not locate the data file for this RFH file.", "RFH/RFD Unpacker", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Could not locate the data file for this RFH file.", "RFH/RFD Unpacker", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
+            timerResult();
+
             statusBar.Style = ProgressBarStyle.Continuous;
             statusState.Text = "Idle";
         }
 
+        public void rfxPack(string directory, string location, bool compression)
+        {
+            timer.Restart();
+
+            var resArchive = new ResourceArchive();
+
+            resArchive.GetRelativeFiles(directory, true, compression);
+
+            try
+            {
+                var writer = new RfWriter();
+                writer.WriteArchive(resArchive, location);
+            }
+            catch (IOException e)
+            {
+                MessageBox.Show("There was an error saving the archive. Does it already exist?\n\nException: "+e.Message, "RFH/RFD Unpacker", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            timerResult();
+        }
+
         private void RFx_Unpack_Click(object sender, EventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Title = "Open RFH File";
-            openFileDialog.Filter = "Resource File Header (*.rfh)|*.rfh";
-            if (openFileDialog.ShowDialog(this) != DialogResult.OK) { return; }
+            var dialog = new CommonOpenFileDialog();
+            dialog.Title = "Open RFH File";
+            dialog.Filters.Add(new CommonFileDialogFilter("Resource File Header", "*.rfh"));
+            if (dialog.ShowDialog() != CommonFileDialogResult.Ok) { return; }
 
-            rfxUnpack(openFileDialog.FileName);
+            rfxUnpack(dialog.FileName);
+        }
+
+        private void RFx_Pack_Click(object sender, EventArgs e)
+        {
+
+            var dialog = new CommonOpenFileDialog { IsFolderPicker = true };
+            dialog.Title = "Select folder to pack";
+            if (dialog.ShowDialog() != CommonFileDialogResult.Ok) { return; }
+
+            var saveDialog = new CommonSaveFileDialog { InitialDirectory = dialog.FileName };
+            saveDialog.DefaultFileName = Path.GetFileName(dialog.FileName)+".rfh";
+            saveDialog.Title = "Save resource archive as";
+            saveDialog.Filters.Add(new CommonFileDialogFilter("Resource File Header", "*.rfh"));
+            if (saveDialog.ShowDialog() != CommonFileDialogResult.Ok) { return; }
+
+            rfxPack(dialog.FileName, saveDialog.FileName, rfxPackerCompression.Checked);
         }
 
         private void RFx_Unpack_Help_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Unpacks a Resource File Data file using the associated Resource File Header file into a directory.\n\nWritten by:\nCyrem, Yellowberry", "RFH/RFD Unpacker",MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("Unpacks a resource archive into a directory.\n\nWritten by:\nCyrem, Yellowberry", "RFH/RFD Unpacker",MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void RFx_Pack_Help_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Packs a resource archive from the contents of a directory.\n\nWritten by:\nYellowberry", "RFH/RFD Packer", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void trkxtkHelp_Click(object sender, EventArgs e)
@@ -92,40 +161,18 @@ namespace SRtoolbox
             MessageBox.Show("Manages the loading and conversion of TRK and XTK files.\n\nWritten by:\nYellowberry", "TRK/XTK Manager", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        private void compressionLevel_Click(object sender, EventArgs e)
-        {
-            compressionBar.Value = 0;
-        }
-
-        private void compressionBar_ValueChanged(object sender, EventArgs e)
-        {
-            compressionLevel.Text = "Compression: " + compressionBar.Value;
-        }
-
         private void xbfobjHelp_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Converts LSR binary models into OBJ format (very experimental and buggy).\n\nWritten by:\nSluicer, Yellowberry", "XBF to OBJ Converter", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
-
-        private void RFHPacker_Click(object sender, EventArgs e)
-        {
-            RFH rfh = new RFH();
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Title = "Open TRK File";
-            openFileDialog.Filter = "Resource File Header (*.trk)|*.trk";
-            openFileDialog.ShowDialog();
-            byte[] packed = rfh.packFile(openFileDialog.FileName,string.Empty, 0,false);
-            FileStream fileStream = new FileStream(openFileDialog.FileName+".zl", FileMode.Create);
-            BinaryWriter binaryWriter = new BinaryWriter(fileStream);
-            binaryWriter.Write(packed);
-            binaryWriter.Close();
-            fileStream.Close();
         }
 
         public void xbfobjConvert(string filename, string location)
         {
             statusBar.Style = ProgressBarStyle.Marquee;
             statusState.Text = "Working...";
+
+            timer.Restart();
+
             try
             {
                 XBFtool xbf = new XBFtool();
@@ -142,23 +189,25 @@ namespace SRtoolbox
             {
                 MessageBox.Show("Exception: " + ex.ToString(), "XBF to OBJ Converter", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
+            timerResult();
+
             statusBar.Style = ProgressBarStyle.Continuous;
             statusState.Text = "Idle";
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            OpenFileDialog ofd = new OpenFileDialog();
-            ofd.Title = "Open XBF File";
-            ofd.Filter = "XBF file (*.xbf)|*.xbf";
-            if (ofd.ShowDialog(this) != DialogResult.OK) { return; }
+            var dialog = new CommonOpenFileDialog();
+            dialog.Title = "Open XBF file";
+            dialog.Filters.Add(new CommonFileDialogFilter("Xanadu Binary File", "*.xbf"));
+            if (dialog.ShowDialog() != CommonFileDialogResult.Ok) { return; }
 
-            FolderBrowserDialog fbd = new FolderBrowserDialog();
-            fbd.Description = "Please select a folder for the converted files.";
-            fbd.SelectedPath = Path.GetDirectoryName(ofd.FileName);
-            if (fbd.ShowDialog(this) != DialogResult.OK) { return; }
+            var folderDialog = new CommonOpenFileDialog { IsFolderPicker = true };
+            folderDialog.Title = "Select folder to extract files";
+            if (folderDialog.ShowDialog() != CommonFileDialogResult.Ok) { return; }
 
-            xbfobjConvert(ofd.FileName, fbd.SelectedPath);
+            xbfobjConvert(dialog.FileName, folderDialog.FileName);
         }
 
         private void button7_Click(object sender, EventArgs e)
@@ -169,7 +218,7 @@ namespace SRtoolbox
 
         private void button3_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Allows you to view the contents of the MOTO.rtb file, which contains the asset mapping for the game.\n\nWritten by:\nYellowberry", "RTB Viewer", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("Allows you to view the contents of the MOTO.rtb file, which contain the table of resources for the game.\n\nWritten by:\nYellowberry", "RTB Viewer", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void button19_Click(object sender, EventArgs e)
@@ -190,7 +239,7 @@ namespace SRtoolbox
 
         private void githubLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Process.Start("https://github.com/YellowberryHN/SRtoolbox");
+            Process.Start(githubLinkURL);
         }
 
         private void versionTagline_Layout(object sender, LayoutEventArgs e)
@@ -205,17 +254,34 @@ namespace SRtoolbox
 
         public void trkLoad(string filename)
         {
+
+            GCHandle handle;
+
             statusBar.Style = ProgressBarStyle.Marquee;
             statusState.Text = "Working...";
 
-            TRK trk = new TRK();
-            trackFile = trk.load(filename);
+            timer.Restart();
+
+            var reader = new TrkReader();
+            track = reader.ReadTrack(filename);
             trackLabel.Text = "Track: " + Path.GetFileName(filename);
-            trackImage.Image = trackFile.image;
-            trackMode.Text = "Mode: " + trackFile.type.ToString();
-            trackSize.Text = "Size: " + trackFile.size.ToString(true);
-            trackTheme.Text = "Theme: " + trackFile.theme.ToString();
-            trackCompat.Text = "Compatibility: " + trackFile.compat.ToString();
+            try
+            {
+                var image = Pfim.Pfim.FromFile(Path.Combine(Path.GetDirectoryName(filename), "Images", Path.GetFileNameWithoutExtension(filename) + ".tga"));
+                handle = GCHandle.Alloc(image.Data, GCHandleType.Pinned);
+                var ptr = Marshal.UnsafeAddrOfPinnedArrayElement(image.Data, 0);
+                trackImage.Image = new Bitmap(image.Width, image.Height, image.Stride, PixelFormat.Format24bppRgb, ptr);
+            }
+            catch (FileNotFoundException)
+            {
+                Console.WriteLine("DEBUG: No image found for " + Path.GetFileName(filename));
+            }
+            trackMode.Text = "Mode: " + track.size;
+            trackSize.Text = "Size: " + (int)Math.Sqrt(track.GetMaxElements());
+            trackTheme.Text = "Theme: " + track.theme;
+            //trackCompat.Text = "Compatibility: " + trackFile.compat.ToString();
+
+            timerResult();
 
             statusBar.Style = ProgressBarStyle.Continuous;
             statusState.Text = "Idle";
@@ -223,12 +289,14 @@ namespace SRtoolbox
 
         private void trkxtkLoad_Click(object sender, EventArgs e)
         {
-            OpenFileDialog ofd = new OpenFileDialog();
-            ofd.Title = "Open track file";
-            ofd.Filter = "Track files (*.trk, *.xtk)|*.trk;*.xtk";
-            if (ofd.ShowDialog(this) != DialogResult.OK) { return; }
+            var dialog = new CommonOpenFileDialog();
+            dialog.Filters.Add(new CommonFileDialogFilter("Tracks", "*.trk;*.xtk"));
+            dialog.Filters.Add(new CommonFileDialogFilter("Legacy track file", "*.trk"));
+            dialog.Filters.Add(new CommonFileDialogFilter("eXtensible track file", "*.xtk"));
+            dialog.Title = "Open track file";
+            if (dialog.ShowDialog() != CommonFileDialogResult.Ok) { return; }
 
-            trkLoad(ofd.FileName);
+            trkLoad(dialog.FileName);
         }
 
         public void cornLoad(string filename)
@@ -236,10 +304,10 @@ namespace SRtoolbox
             statusBar.Style = ProgressBarStyle.Marquee;
             statusState.Text = "Working...";
 
-            CorneringFile cor;
-            Cornering cornering = new Cornering();
+            timer.Restart();
 
-            cor = cornering.load(filename);
+            var cor = new CorneringData();
+            cor.Load(filename);
 
             corDataGroup.Text = "Cornering data editor ( " + Path.GetFileName(filename) + " )";
             corSmall.Value = (decimal)cor.Small;
@@ -254,18 +322,20 @@ namespace SRtoolbox
             corBigSmall_Opp.Value = (decimal)cor.BigSmall_Opp;
             corSmallBig_Opp.Value = (decimal)cor.SmallBig_Opp;
 
+            timerResult();
+
             statusBar.Style = ProgressBarStyle.Continuous;
             statusState.Text = "Idle";
         }
 
         private void cornLoadBtn_Click(object sender, EventArgs e)
         {
-            OpenFileDialog ofd = new OpenFileDialog();
-            ofd.Title = "Open cornering data file";
-            ofd.Filter = "Cornering data (*.dat)|*.dat";
-            if (ofd.ShowDialog(this) != DialogResult.OK) { return; }
+            var dialog = new CommonOpenFileDialog();
+            dialog.Filters.Add(new CommonFileDialogFilter("Cornering data", "*.dat"));
+            dialog.Title = "Open cornering data file";
+            if (dialog.ShowDialog() != CommonFileDialogResult.Ok) { return; }
 
-            cornLoad(ofd.FileName);
+            cornLoad(dialog.FileName);
         }
 
         public void cornSave(string filename)
@@ -273,8 +343,9 @@ namespace SRtoolbox
             statusBar.Style = ProgressBarStyle.Marquee;
             statusState.Text = "Working...";
 
-            CorneringFile cor = new CorneringFile();
-            Cornering cornering = new Cornering();
+            timer.Restart();
+
+            var cor = new CorneringData();
 
             corDataGroup.Text = "Cornering data editor ( " + Path.GetFileName(filename) + " )";
             cor.Small = (float)corSmall.Value;
@@ -289,7 +360,9 @@ namespace SRtoolbox
             cor.BigSmall_Opp = (float)corBigSmall_Opp.Value;
             cor.SmallBig_Opp = (float)corSmallBig_Opp.Value;
 
-            cornering.save(filename, cor);
+            cor.Save(filename);
+
+            timerResult();
 
             statusBar.Style = ProgressBarStyle.Continuous;
             statusState.Text = "Idle";
@@ -297,12 +370,12 @@ namespace SRtoolbox
 
         private void cornSaveBtn_Click(object sender, EventArgs e)
         {
-            SaveFileDialog sfd = new SaveFileDialog();
-            sfd.Title = "Save cornering data file as";
-            sfd.Filter = "Cornering data (*.dat)|*.dat";
-            if (sfd.ShowDialog(this) != DialogResult.OK) { return; }
+            var dialog = new CommonSaveFileDialog();
+            dialog.Title = "Save cornering data file as";
+            dialog.Filters.Add(new CommonFileDialogFilter("Cornering data", "*.dat"));
+            if (dialog.ShowDialog() != CommonFileDialogResult.Ok) { return; }
 
-            cornSave(sfd.FileName);
+            cornSave(dialog.FileName);
         }
 
         public void aiLoad(string filename)
@@ -310,10 +383,10 @@ namespace SRtoolbox
             statusBar.Style = ProgressBarStyle.Marquee;
             statusState.Text = "Working...";
 
-            AIFile ai;
-            AIData aidata = new AIData();
+            timer.Restart();
 
-            ai = aidata.load(filename);
+            var ai = new AIData();
+            ai.Load(filename);
 
             aiDataGroup.Text = "Car AI data editor ( " + Path.GetFileName(filename) + " )";
 
@@ -327,18 +400,20 @@ namespace SRtoolbox
             aiIntelligence.Value = ai.Intelligence;
             aiCraziness.Value = ai.Craziness;
 
+            timerResult();
+
             statusBar.Style = ProgressBarStyle.Continuous;
             statusState.Text = "Idle";
         }
 
         private void aiLoadBtn_Click(object sender, EventArgs e)
         {
-            OpenFileDialog ofd = new OpenFileDialog();
-            ofd.Title = "Open AI data file";
-            ofd.Filter = "AI data (*.bin)|*.bin";
-            if (ofd.ShowDialog(this) != DialogResult.OK) { return; }
+            var dialog = new CommonOpenFileDialog();
+            dialog.Filters.Add(new CommonFileDialogFilter("AI data", "*.bin"));
+            dialog.Title = "Open AI data file";
+            if (dialog.ShowDialog() != CommonFileDialogResult.Ok) { return; }
 
-            aiLoad(ofd.FileName);
+            aiLoad(dialog.FileName);
         }
 
         public void aiSave(string filename)
@@ -346,8 +421,9 @@ namespace SRtoolbox
             statusBar.Style = ProgressBarStyle.Marquee;
             statusState.Text = "Working...";
 
-            AIFile ai = new AIFile();
-            AIData aidata = new AIData();
+            timer.Restart();
+
+            var ai = new AIData();
 
             aiDataGroup.Text = "Car AI data editor ( " + Path.GetFileName(filename) + " )";
 
@@ -361,7 +437,9 @@ namespace SRtoolbox
             ai.Intelligence = (byte)aiIntelligence.Value;
             ai.Craziness = (byte)aiCraziness.Value;
 
-            aidata.save(filename, ai);
+            ai.Save(filename);
+
+            timerResult();
 
             statusBar.Style = ProgressBarStyle.Continuous;
             statusState.Text = "Idle";
@@ -369,12 +447,23 @@ namespace SRtoolbox
 
         private void aiSaveBtn_Click(object sender, EventArgs e)
         {
-            SaveFileDialog sfd = new SaveFileDialog();
-            sfd.Title = "Save AI data file as";
-            sfd.Filter = "AI data (*.bin)|*.bin";
-            if (sfd.ShowDialog(this) != DialogResult.OK) { return; }
+            var dialog = new CommonSaveFileDialog();
+            dialog.Title = "Save AI data file as";
+            dialog.Filters.Add(new CommonFileDialogFilter("AI data", "*.bin"));
+            if (dialog.ShowDialog() != CommonFileDialogResult.Ok) { return; }
 
-            aiSave(sfd.FileName);
+            aiSave(dialog.FileName);
+        }
+
+        private void githubLink_Layout(object sender, LayoutEventArgs e)
+        {
+            githubLink.Text = githubLinkURL;
+        }
+
+        private void mvdeditBtn_Click(object sender, EventArgs e)
+        {
+            MVDEditorForm mvdef = new MVDEditorForm();
+            mvdef.Show();
         }
     }
 }
