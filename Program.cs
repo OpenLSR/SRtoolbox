@@ -21,17 +21,6 @@ namespace SRtoolbox
         {
             arguments = cmdargs;
 
-            EmbeddedAssembly.Load("SRtoolbox.lib.DotNetZip.dll", "DotNetZip.dll");
-            EmbeddedAssembly.Load("SRtoolbox.lib.Pfim.dll", "Pfim.dll");
-            //EmbeddedAssembly.Load("SRtoolbox.lib.LSRutil.NET.dll", "LSRutil.NET.dll");
-
-            AppDomain.CurrentDomain.AssemblyResolve += new ResolveEventHandler(CurrentDomain_AssemblyResolve);
-
-            Assembly CurrentDomain_AssemblyResolve(object sender, ResolveEventArgs args)
-            {
-                return EmbeddedAssembly.Get(args.Name);
-            }
-
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 

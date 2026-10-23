@@ -1,29 +1,30 @@
-﻿using System;
+﻿using LSRutil;
+using LSRutil.AI;
+using LSRutil.RF;
+using LSRutil.TRK;
+using Microsoft.WindowsAPICodePack.Dialogs;
+using Pfim;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
+using System.Reflection;
+using System.Runtime.InteropServices;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
-using System.IO;
 using System.Windows.Forms;
-using System.Reflection;
-using System.Diagnostics;
-using LSRutil;
-using LSRutil.TRK;
-using LSRutil.RF;
-using Microsoft.WindowsAPICodePack.Dialogs;
-using LSRutil.AI;
-using System.Runtime.InteropServices;
-using Pfim;
-using System.Drawing.Imaging;
 
 namespace SRtoolbox
 {
     public partial class MainForm : Form
     {
-        private string githubLinkURL = "https://github.com/YellowberryHN/SRtoolbox";
+        private string githubLinkURL = "https://github.com/OpenLSR/SRtoolbox";
 
         public string tagline = "What if we used a library?";
         public string version = "2.0.0";
@@ -239,10 +240,10 @@ namespace SRtoolbox
 
         private void githubLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Process.Start(githubLinkURL);
+            Process.Start(new ProcessStartInfo { FileName = githubLinkURL, UseShellExecute = true });
         }
 
-        private void versionTagline_Layout(object sender, LayoutEventArgs e)
+        private void versionTagline_Paint(object sender, PaintEventArgs e)
         {
             versionTagline.Text = "Version " + version + " - " + tagline;
         }
@@ -267,7 +268,7 @@ namespace SRtoolbox
             trackLabel.Text = "Track: " + Path.GetFileName(filename);
             try
             {
-                var image = Pfim.Pfim.FromFile(Path.Combine(Path.GetDirectoryName(filename), "Images", Path.GetFileNameWithoutExtension(filename) + ".tga"));
+                var image = Pfimage.FromFile(Path.Combine(Path.GetDirectoryName(filename), "Images", Path.GetFileNameWithoutExtension(filename) + ".tga"));
                 handle = GCHandle.Alloc(image.Data, GCHandleType.Pinned);
                 var ptr = Marshal.UnsafeAddrOfPinnedArrayElement(image.Data, 0);
                 trackImage.Image = new Bitmap(image.Width, image.Height, image.Stride, PixelFormat.Format24bppRgb, ptr);
@@ -455,7 +456,7 @@ namespace SRtoolbox
             aiSave(dialog.FileName);
         }
 
-        private void githubLink_Layout(object sender, LayoutEventArgs e)
+        private void githubLink_Paint(object sender, PaintEventArgs e)
         {
             githubLink.Text = githubLinkURL;
         }

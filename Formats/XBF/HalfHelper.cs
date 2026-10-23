@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 
-namespace System
+namespace SRtoolbox
 {
     /// <summary>
     /// Helper class for Half conversions and some low level operations.

@@ -5,7 +5,7 @@ using System;
 using System.Diagnostics;
 using System.Globalization;
 
-namespace System
+namespace SRtoolbox
 {
     /// <summary>
     /// Represents a half-precision floating point number. 
